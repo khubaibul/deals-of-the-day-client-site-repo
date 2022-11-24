@@ -11,7 +11,7 @@ const DefaultDashBoard = () => {
                     Add Products/Foods. Control Traffic. Accept Orders. Give Customers Questions Answer As Soon As Possible.
                 </p>
             </div>
-            <div class="flex bg-pink-500 justify-center items-center">
+            <div class="lg:flex bg-pink-500 justify-center items-center pt-5">
                 <div class="mt-4 w-full h-40 lg:w-6/12 xl:w-3/12 px-5 mb-4">
                     <div class="relative flex flex-col min-w-0 break-words bg-white rounded mb-3 xl:mb-0 shadow-lg">
                         <div class="flex-auto p-4">

@@ -11,7 +11,7 @@ const Categories = () => {
     })
 
     if (isLoading) {
-        return <div className='flex justify-center'>
+        return <div className='flex justify-center mt-10'>
             <Blocks
                 visible={true}
                 height="80"

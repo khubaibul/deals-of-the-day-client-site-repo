@@ -1,10 +1,9 @@
 import React from 'react';
-import { FaClock, FaLocationArrow, FaTimes, FaUser } from 'react-icons/fa';
+import { FaClock, FaLocationArrow, FaUser } from 'react-icons/fa';
 
-const Product = ({ product }) => {
+const Product = ({ product, setSelectedProduct }) => {
     console.log(product);
     const { _id, productName, category, condition, originalPrice, price, productImage, usedFor, productDescription, addedDate, sellerInformation } = product;
-    console.log(sellerInformation);
     return (
         <div className="min-w-screen min-h-screen bg-yellow-300 flex items-center p-5 lg:p-10 overflow-hidden relative">
             <div className="w-full max-w-6xl rounded bg-white shadow-xl p-10 lg:p-20 mx-auto text-gray-800 relative md:text-left">
@@ -20,10 +19,11 @@ const Product = ({ product }) => {
                             <h1 className="font-bold uppercase text-2xl mb-5">{productName}</h1>
                             <p className="text-sm">{productDescription}</p>
                         </div>
-                        <div className='flex justify-between my-4 font-semibold'>
+                        <div className='grid grid-cols-2 gap-4 my-4 font-semibold'>
                             <h4 className='flex items-center gap-x-2'><FaLocationArrow></FaLocationArrow> {sellerInformation.sellerLocation}</h4>
                             <h4 className='flex items-center gap-x-2'> <FaClock></FaClock> Used : {(usedFor / 12).toFixed(1)} Year</h4>
                             <h4 className='flex items-center gap-x-2'> Post On : {addedDate}</h4>
+                            <h4 className='flex items-center gap-x-2'> Condition : {condition}</h4>
                         </div>
                         <div>
                             <div className="inline-block align-bottom mr-5 mt-2">
@@ -41,10 +41,12 @@ const Product = ({ product }) => {
                                     {sellerInformation.sellerName} ✅</h4>
                             </div>
                             <div className="inline-block align-bottom mt-4">
-                                <button
+                                <label
+                                    onClick={setSelectedProduct(product)}
+                                    label htmlFor="bookingModal"
                                     className="bg-neutral  text-yellow-500 rounded-full px-10 py-2 font-semibold">
                                     BOOK NOW
-                                </button>
+                                </label>
                             </div>
                         </div>
                     </div>

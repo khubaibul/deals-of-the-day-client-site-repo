@@ -1,6 +1,8 @@
 import { createBrowserRouter } from "react-router-dom";
 import AddProducts from "../Components/DashBoard/AddProduct/AddProduct";
+import MyOrders from "../Components/DashBoard/DashBoard/MyOrders/MyOrders";
 import DefaultDashBoard from "../Components/DashBoard/DefaultDashBoard/DefaultDashBoard";
+import Blogs from "../Components/Pages/Blogs/Blogs";
 import CategoryDetails from "../Components/Pages/Categories/CategoryDetails";
 import Home from "../Components/Pages/Home/Home/Home";
 import UserProfile from "../Components/Pages/User/UserProfile";
@@ -9,6 +11,7 @@ import SignUp from "../Components/Shared/Authentication/SignUp/SignUp";
 import ErrorPage from "../Components/Shared/ErrorPage/ErrorPage";
 import DashBoardLayout from "../Layouts/DashBoardLayout";
 import MainLayout from "../Layouts/MainLayout";
+import PrivateRoute from "./PrivateRoute";
 
 export const router = createBrowserRouter([
     {
@@ -29,17 +32,21 @@ export const router = createBrowserRouter([
                 element: <SignUp></SignUp>
             },
             {
+                path: "/blogs",
+                element: <Blogs></Blogs>
+            },
+            {
                 path: "/user-profile",
                 element: <UserProfile></UserProfile>
             },
             {
                 path: "/category-details/:category_name",
-                element: <CategoryDetails></CategoryDetails>,
+                element: <PrivateRoute><CategoryDetails></CategoryDetails></PrivateRoute>,
                 loader: ({ params }) => fetch(`${process.env.REACT_APP_API_URL}/category/${params.category_name}`)
             },
             {
                 path: "/dashboard",
-                element: <DashBoardLayout></DashBoardLayout>,
+                element: <PrivateRoute><DashBoardLayout></DashBoardLayout></PrivateRoute>,
                 children: [
                     {
                         path: "/dashboard",
@@ -48,7 +55,11 @@ export const router = createBrowserRouter([
                     {
                         path: "/dashboard/add-product",
                         element: <AddProducts></AddProducts>
-                    }
+                    },
+                    {
+                        path: "/dashboard/my-orders",
+                        element: <MyOrders></MyOrders>
+                    },
                 ]
             }
 

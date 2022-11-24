@@ -1,27 +1,27 @@
 import React, { useContext } from 'react';
 import { FaShoppingBag } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import logo from "../../../Assets/Logo/deals_of_the_day_logo.png";
 import { AuthContext } from '../../../Context/AuthContext/AuthProvider';
 
 const Navbar = () => {
     const { user, logOut } = useContext(AuthContext);
     const navLink = <>
-        <li className='hover:bg-yellow-500'><Link to="/">HOME</Link></li>
-        <li className='hover:bg-yellow-500'><Link>PRODUCTS</Link></li>
-        <li className='hover:bg-yellow-500'><Link to="/dashboard">DASHBOARD</Link></li>
-        <li className='hover:bg-yellow-500'><Link>BLOGS</Link></li>
-        <li className='hover:bg-yellow-500'><Link>ABOUT US</Link></li>
+        <li className='hover:bg-yellow-500'><NavLink to="/">HOME</NavLink></li>
+        <li className='hover:bg-yellow-500'><NavLink to="/products">PRODUCTS</NavLink></li>
+        <li className='hover:bg-yellow-500'><NavLink to="/dashboard">DASHBOARD</NavLink></li>
+        <li className='hover:bg-yellow-500'><NavLink to="/blogs">BLOGS</NavLink></li>
+        <li className='hover:bg-yellow-500'><NavLink to="/about-us">ABOUT US</NavLink></li>
         {
             user?.uid ?
                 <>
-                    <li className='hover:bg-yellow-500'><Link to="/user-profile">USER</Link></li>
+                    <li className='hover:bg-yellow-500'><NavLink to="/user-profile">USER</NavLink></li>
                     <button onClick={logOut}><li className='hover:bg-yellow-500'><Link>LOG OUT</Link></li></button>
                 </>
                 :
                 <>
-                    <li className='hover:bg-yellow-500'><Link to="/login">LOGIN</Link></li>
-                    <li className='hover:bg-yellow-500'><Link to="/sign-up">SIGNUP</Link></li>
+                    <li className='hover:bg-yellow-500'><NavLink to="/login">LOGIN</NavLink></li>
+                    <li className='hover:bg-yellow-500'><NavLink to="/sign-up">SIGNUP</NavLink></li>
                 </>
         }
     </>
