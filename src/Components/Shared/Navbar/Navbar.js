@@ -9,7 +9,7 @@ const Navbar = () => {
     const navLink = <>
         <li className='hover:bg-yellow-500'><Link to="/">HOME</Link></li>
         <li className='hover:bg-yellow-500'><Link>PRODUCTS</Link></li>
-        <li className='hover:bg-yellow-500'><Link>DASHBOARD</Link></li>
+        <li className='hover:bg-yellow-500'><Link to="/dashboard">DASHBOARD</Link></li>
         <li className='hover:bg-yellow-500'><Link>BLOGS</Link></li>
         <li className='hover:bg-yellow-500'><Link>ABOUT US</Link></li>
         {
@@ -49,9 +49,14 @@ const Navbar = () => {
                     {navLink}
                 </ul>
             </div>
-            <div className="navbar-end">
+            <div className="navbar-end hidden lg:block">
                 <div className="form-control">
                     <input type="text" placeholder="Search" className="input input-bordered rounded-none text-black" />
+                </div>
+            </div>
+            <div className="navbar-end lg:hidden">
+                <div className="form-control">
+                    <p className='text-lg font-bold text-yellow-500'>DEAL OF THE DAY</p>
                 </div>
             </div>
         </div>

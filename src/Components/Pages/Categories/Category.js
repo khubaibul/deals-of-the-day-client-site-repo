@@ -1,15 +1,17 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const Category = ({ category, _id }) => {
+const Category = ({ category }) => {
+    const { _id, category_img, category_name, bg_class, text_color } = category;
+    console.log(text_color);
     return (
-        <Link to={`/category-details/${_id}`}>
-            <div className={`card w-full bg-yellow-500 rounded-none`}>
+        <Link to={`/category-details/${category_name}`}>
+            <div className={`card w-full ${bg_class} rounded-none`}>
                 <figure className="px-10 pt-10">
-                    <img src="https://placeimg.com/400/225/arch" alt="Categories" className="rounded-none w-36" />
+                    <img src={category_img} alt="Categories" className="rounded-none w-36" />
                 </figure>
                 <div className="card-body items-center text-center">
-                    <h2 className="card-title">ROAD BIKE</h2>
+                    <h2 className={`mb-5 text-3xl font-bold ${text_color}`}>{category_name}</h2>
                 </div>
             </div>
         </Link>
