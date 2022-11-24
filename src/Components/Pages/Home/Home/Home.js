@@ -1,6 +1,6 @@
 import React from 'react';
 import Advertise from '../Advertise/Advertise';
-import Categories from '../Categories/Categories';
+import Categories from '../../Categories/Categories';
 import Hero from '../Hero/Hero';
 import HomeBottomBanner from '../HomeBottomBanner/HomeBottomBanner';
 import Reviews from '../Reviews/Reviews';

@@ -5,11 +5,13 @@ import logo from "../../../Assets/Logo/deals_of_the_day_logo.png";
 
 const Navbar = () => {
     const navLink = <>
-        <li className='hover:bg-yellow-500'><Link>HOME</Link></li>
+        <li className='hover:bg-yellow-500'><Link to="/">HOME</Link></li>
         <li className='hover:bg-yellow-500'><Link>PRODUCTS</Link></li>
         <li className='hover:bg-yellow-500'><Link>DASHBOARD</Link></li>
         <li className='hover:bg-yellow-500'><Link>BLOGS</Link></li>
         <li className='hover:bg-yellow-500'><Link>ABOUT US</Link></li>
+        <li className='hover:bg-yellow-500'><Link to="/login">LOGIN</Link></li>
+        <li className='hover:bg-yellow-500'><Link to="/sign-up">SIGNUP</Link></li>
     </>
     return (
         <div className="navbar bg-[#183661] lg:px-36 text-white py-6">
@@ -26,7 +28,7 @@ const Navbar = () => {
                         </div>
                     </ul>
                 </div>
-                <Link>
+                <Link to="/">
                     <img src={logo} className="w-32" alt="" />
                 </Link>
             </div>

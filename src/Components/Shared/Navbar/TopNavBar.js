@@ -30,7 +30,7 @@ const TopNavBar = () => {
                     </h3>
                 </div>
                 <div className='flex items-center gap-x-2'>
-                    <button><FaShoppingBag /></button>
+                    <button className='lg:text-3xl text-neutral'><FaShoppingBag /></button>
                     <button className='btn btn-sm bg-blue-900 hover:bg-yellow-500'>Order Now</button>
                 </div>
             </div>
