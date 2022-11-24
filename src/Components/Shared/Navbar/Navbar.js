@@ -1,17 +1,25 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { FaShoppingBag } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import logo from "../../../Assets/Logo/deals_of_the_day_logo.png";
+import { AuthContext } from '../../../Context/AuthContext/AuthProvider';
 
 const Navbar = () => {
+    const { user } = useContext(AuthContext);
     const navLink = <>
         <li className='hover:bg-yellow-500'><Link to="/">HOME</Link></li>
         <li className='hover:bg-yellow-500'><Link>PRODUCTS</Link></li>
         <li className='hover:bg-yellow-500'><Link>DASHBOARD</Link></li>
         <li className='hover:bg-yellow-500'><Link>BLOGS</Link></li>
         <li className='hover:bg-yellow-500'><Link>ABOUT US</Link></li>
-        <li className='hover:bg-yellow-500'><Link to="/login">LOGIN</Link></li>
-        <li className='hover:bg-yellow-500'><Link to="/sign-up">SIGNUP</Link></li>
+        {
+            user?.uid ? <li className='hover:bg-yellow-500'><Link to="/user-profile">USER</Link></li>
+                :
+                <>
+                    <li className='hover:bg-yellow-500'><Link to="/login">LOGIN</Link></li>
+                    <li className='hover:bg-yellow-500'><Link to="/sign-up">SIGNUP</Link></li>
+                </>
+        }
     </>
     return (
         <div className="navbar bg-[#183661] lg:px-36 text-white py-6">

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { createContext } from 'react'
 import {
-    createUserWithEmailAndPassword, getAuth, GoogleAuthProvider, onAuthStateChanged, sendPasswordResetEmail,
+    createUserWithEmailAndPassword, FacebookAuthProvider, getAuth, GoogleAuthProvider, onAuthStateChanged, sendPasswordResetEmail,
     signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile,
 } from 'firebase/auth'
 import app from '../../Firebase/Firebase.config'
@@ -9,11 +9,13 @@ import app from '../../Firebase/Firebase.config'
 export const AuthContext = createContext()
 const auth = getAuth(app);
 
-const googleProvider = new GoogleAuthProvider()
+const googleProvider = new GoogleAuthProvider();
+const facebookProvider = new FacebookAuthProvider();
 
 const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
+    const [theme, setTheme] = useState(false);
 
     // Create User
     const createUser = (email, password) => {
@@ -42,6 +44,11 @@ const AuthProvider = ({ children }) => {
         return signInWithPopup(auth, googleProvider)
     }
 
+    // Facebook SignIn
+    const signInWithFacebook = () => {
+        setLoading(true)
+        return signInWithPopup(auth, facebookProvider)
+    }
     // Reset Password
     const resetPassword = email => {
         setLoading(true)
@@ -49,34 +56,38 @@ const AuthProvider = ({ children }) => {
     }
 
     // Logout
-    const logout = () => {
-        setLoading(true)
-        localStorage.removeItem('hotel-booking-bd')
-        return signOut(auth)
+    const logOut = () => {
+        setLoading(true);
+        return signOut(auth);
     }
 
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, currentUser => {
-            setUser(currentUser)
-            setLoading(false)
+            if (user === null) {
+                setUser(currentUser);
+            }
+            setLoading(false);
         })
 
         return () => {
             unsubscribe()
         }
-    }, [])
+    }, []);
 
     const authInfo = {
         user,
         createUser,
         updateUserProfile,
         signInWithGoogle,
-        logout,
+        signInWithFacebook,
+        logOut,
         signIn,
         resetPassword,
         loading,
         setLoading,
+        theme,
+        setTheme
     }
 
     return (
