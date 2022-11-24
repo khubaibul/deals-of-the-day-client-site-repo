@@ -6,7 +6,7 @@ import DashBoardNavbar from '../Components/DashBoard/DashBoardNavbar/DashBoardNa
 
 const DashBoardLayout = () => {
     return (
-        <div className='lg:flex h-screen'>
+        <div className='lg:flex'>
             <DashBoard></DashBoard>
             <DashBoardNavbar></DashBoardNavbar>
             <Outlet></Outlet>

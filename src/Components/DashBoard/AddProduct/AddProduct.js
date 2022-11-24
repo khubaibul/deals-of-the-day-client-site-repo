@@ -17,6 +17,7 @@ const AddProducts = () => {
         const productName = form.productName.value;
         const category = form.category.value;
         const condition = form.condition.value;
+        const originalPrice = parseInt(form.originalPrice.value);
         const price = parseInt(form.price.value);
         const usedFor = parseInt(form.usedFor.value);
         const image = form.image.files[0];
@@ -54,6 +55,7 @@ const AddProducts = () => {
                     productName,
                     category,
                     condition,
+                    originalPrice,
                     price,
                     usedFor,
                     productImage: data.data.display_url,
@@ -83,7 +85,7 @@ const AddProducts = () => {
     }
 
     return (
-        <div className="bg-yellow-400 p-16 py-8 my-8">
+        <div className="bg-yellow-400 p-16 py-8 my-10">
             <h1 h1 className='text-center font-bold text-4xl mb-4' > Add Your Product</h1 >
             <form onSubmit={handleAddFood}>
                 <div className="grid gap-6 mb-6 lg:grid-cols-2">
@@ -109,10 +111,6 @@ const AddProducts = () => {
                         </select>
                     </div>
                     <div>
-                        <label htmlFor="price" className="block mb-2 text-sm  text-gray-800 font-bold">Price</label>
-                        <input type="number" name="price" className="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="BDT 9999" required />
-                    </div>
-                    <div>
                         <label htmlFor="image" className="block mb-2 text-sm  text-gray-800 font-bold">Product Image</label>
                         <input
                             className="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -122,6 +120,14 @@ const AddProducts = () => {
                             accept='image/*'
                             required
                         />
+                    </div>
+                    <div>
+                        <label htmlFor="originalPrice" className="block mb-2 text-sm  text-gray-800 font-bold">Original Price</label>
+                        <input type="number" name="originalPrice" className="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="BDT 9999" required />
+                    </div>
+                    <div>
+                        <label htmlFor="price" className="block mb-2 text-sm  text-gray-800 font-bold">Selling Price</label>
+                        <input type="number" name="price" className="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="BDT 9999" required />
                     </div>
                     <div>
                         <label htmlFor="usedFor" className="block mb-2 text-sm  text-gray-800 font-bold">Used For (Months)</label>

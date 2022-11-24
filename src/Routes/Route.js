@@ -6,6 +6,7 @@ import Home from "../Components/Pages/Home/Home/Home";
 import UserProfile from "../Components/Pages/User/UserProfile";
 import Login from "../Components/Shared/Authentication/Login/Login";
 import SignUp from "../Components/Shared/Authentication/SignUp/SignUp";
+import ErrorPage from "../Components/Shared/ErrorPage/ErrorPage";
 import DashBoardLayout from "../Layouts/DashBoardLayout";
 import MainLayout from "../Layouts/MainLayout";
 
@@ -13,6 +14,7 @@ export const router = createBrowserRouter([
     {
         path: "/",
         element: <MainLayout></MainLayout>,
+        errorElement: <ErrorPage></ErrorPage>,
         children: [
             {
                 path: "/",
