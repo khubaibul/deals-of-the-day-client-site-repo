@@ -5,6 +5,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../../Context/AuthContext/AuthProvider';
 import SharedButton from '../../Button/SharedButton';
 import SmallSpinner from '../../Button/SmallSpinner';
+import { setAuthToken } from '../../../../Context/Auth';
 
 const Signup = () => {
     const [loading, setLoading] = useState(false);
@@ -21,6 +22,12 @@ const Signup = () => {
         const email = form.email.value;
         const password = form.password.value;
         const buyerOrSeller = form.buyerOrSeller.value;
+
+        const user = {
+            name,
+            email,
+            buyerOrSeller
+        }
 
 
         // Upload To Imgbb
@@ -39,26 +46,32 @@ const Signup = () => {
                     .then(result => {
 
                         // Set User To DB And Get Token
-                        // setAuthToken(result.user);
+                        setAuthToken(user);
 
                         // Update User Profile
                         updateUserProfile(name, data.data.display_url)
                             .then(result => {
-                                console.log(result);
                                 form.reset();
                                 setLoading(false);
+                                toast.success("SignUp Successful...!")
+                                navigate(from, { replace: true });
                             })
-                            .catch(err => console.log("From Update Profile", err))
+                            .catch(err => {
+                                toast.error(err.message.slice(10))
+                                console.log("From Update Profile", err)
+                            })
 
                     })
                     .catch(err => {
                         console.log("From Create User", err);
+                        toast.error(err.message.slice(10))
                         setLoading(false);
                     })
 
             })
             .catch(err => {
                 console.log("From Imgbb", err);
+                toast.error(err.message.slice(10))
                 setLoading(false)
             })
     }
@@ -70,11 +83,12 @@ const Signup = () => {
         signInWithGoogle()
             .then(result => {
                 toast.success("Login With Google Successful");
-                // setAuthToken(result.user);
-                // navigate(from, { replace: true });
+                setAuthToken(result.user);
+                navigate(from, { replace: true });
             })
             .catch(err => {
                 console.log("From Google SignIn", err);
+                toast.error(err.message.slice(10))
             })
     }
 
@@ -84,11 +98,12 @@ const Signup = () => {
         signInWithFacebook()
             .then(result => {
                 toast.success("Login With Facebook Successful");
-                // setAuthToken(result.user);
-                // navigate(from, { replace: true });
+                setAuthToken(result.user);
+                navigate(from, { replace: true });
             })
             .catch(err => {
                 console.log("From Google SignIn", err);
+                toast.error(err.message.slice(10))
             })
     }
 

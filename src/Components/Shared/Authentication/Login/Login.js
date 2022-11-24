@@ -6,6 +6,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom'
 import SharedButton from '../../Button/SharedButton'
 import { AuthContext } from '../../../../Context/AuthContext/AuthProvider';
 import SmallSpinner from '../../Button/SmallSpinner';
+import { setAuthToken } from '../../../../Context/Auth';
 
 const Login = () => {
     const [userEmail, setUserEmail] = useState("");
@@ -26,14 +27,14 @@ const Login = () => {
         // SignIn
         signIn(email, password)
             .then(result => {
-                console.log(result);
                 toast.success("Login Successful...");
-                // setAuthToken(result.user);
+                setAuthToken(result.user);
                 navigate(from, { replace: true });
             })
             .catch(err => {
                 toast.error(err.message)
                 console.log("From SignIn", err);
+                toast.error(err.message.slice(10))
                 setLoading(false);
             })
 
@@ -59,11 +60,12 @@ const Login = () => {
         signInWithGoogle()
             .then(result => {
                 toast.success("Login With Google Successful");
-                // setAuthToken(result.user);
+                setAuthToken(result.user);
                 navigate(from, { replace: true });
             })
             .catch(err => {
                 console.log("From Google SignIn", err);
+                toast.error(err.message.slice(10))
             })
     }
 
@@ -72,11 +74,12 @@ const Login = () => {
         signInWithFacebook()
             .then(result => {
                 toast.success("Login With Facebook Successful");
-                // setAuthToken(result.user);
+                setAuthToken(result.user);
                 navigate(from, { replace: true });
             })
             .catch(err => {
                 console.log("From Google SignIn", err);
+                toast.error(err.message.slice(10))
             })
     }
 

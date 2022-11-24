@@ -1,7 +1,11 @@
 export const setAuthToken = user => {
+
     const currentUser = {
-        email: user.email
+        userName: user?.name || user?.displayName,
+        email: user?.email,
+        buyerOrSeller: user?.buyerOrSeller || "Buyer"
     };
+
 
     // Save User In Database and Get JWT Token
     fetch(`${process.env.REACT_APP_API_URL}/user/${user?.email}`, {
@@ -13,6 +17,6 @@ export const setAuthToken = user => {
     })
         .then(res => res.json())
         .then(data => {
-            localStorage.setItem("hotel-booking-bd", data.token)
+            // localStorage.setItem("hotel-booking-bd", data.token)
         })
 }

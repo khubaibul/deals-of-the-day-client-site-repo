@@ -5,7 +5,7 @@ import logo from "../../../Assets/Logo/deals_of_the_day_logo.png";
 import { AuthContext } from '../../../Context/AuthContext/AuthProvider';
 
 const Navbar = () => {
-    const { user } = useContext(AuthContext);
+    const { user, logOut } = useContext(AuthContext);
     const navLink = <>
         <li className='hover:bg-yellow-500'><Link to="/">HOME</Link></li>
         <li className='hover:bg-yellow-500'><Link>PRODUCTS</Link></li>
@@ -13,7 +13,11 @@ const Navbar = () => {
         <li className='hover:bg-yellow-500'><Link>BLOGS</Link></li>
         <li className='hover:bg-yellow-500'><Link>ABOUT US</Link></li>
         {
-            user?.uid ? <li className='hover:bg-yellow-500'><Link to="/user-profile">USER</Link></li>
+            user?.uid ?
+                <>
+                    <li className='hover:bg-yellow-500'><Link to="/user-profile">USER</Link></li>
+                    <button onClick={logOut}><li className='hover:bg-yellow-500'><Link>LOG OUT</Link></li></button>
+                </>
                 :
                 <>
                     <li className='hover:bg-yellow-500'><Link to="/login">LOGIN</Link></li>
