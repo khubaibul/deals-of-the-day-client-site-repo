@@ -1,12 +1,14 @@
 import React, { useContext, useState } from 'react';
 import toast from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../Context/AuthContext/AuthProvider';
 import SmallSpinner from '../../Shared/Button/SmallSpinner';
 // import useDynamicTitle from '../../../Hooks/useDynamicTitle';
 
 const AddProducts = () => {
     const [loading, setLoading] = useState(false);
-    const { user } = useContext(AuthContext)
+    const { user } = useContext(AuthContext);
+    const navigate = useNavigate();
 
     // useDynamicTitle("Add Food - Admin Dashboard")
 
@@ -16,12 +18,12 @@ const AddProducts = () => {
         const form = e.target;
         const productName = form.productName.value;
         const category = form.category.value;
+        console.log(category);
         const condition = form.condition.value;
         const originalPrice = parseInt(form.originalPrice.value);
         const price = parseInt(form.price.value);
         const usedFor = parseInt(form.usedFor.value);
         const image = form.image.files[0];
-        console.log(image);
         const sellerInformation = {
             sellerName: form.sellerName.value,
             sellerLocation: form.sellerLocation.value,
@@ -78,6 +80,7 @@ const AddProducts = () => {
                             toast.success(`${productName} Added Successfully...`);
                             setLoading(false)
                             form.reset();
+                            navigate("/dashboard/my-products")
                         }
                     })
 
@@ -100,7 +103,7 @@ const AddProducts = () => {
                             <option selected value={"ROAD BIKE"}>ROAD BIKE</option>
                             <option value={"MTB"}>MTB</option>
                             <option value={"BMX"}>BMX</option>
-                            <option value={"BMX"}>UTILITY BIKE</option>
+                            <option value={"UTILITY BIKE"}>UTILITY BIKE</option>
                         </select>
                     </div>
                     <div>

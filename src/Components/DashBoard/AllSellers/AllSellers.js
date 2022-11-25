@@ -1,5 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
+import toast from 'react-hot-toast';
 import { Blocks } from 'react-loader-spinner';
 import SingleSeller from './SingleSeller';
 
@@ -23,6 +24,24 @@ const AllSellers = () => {
         </div>
     }
 
+    const handleSellerVerification = (email) => {
+        fetch(`${process.env.REACT_APP_API_URL}/seller-verification`, {
+            method: "PUT",
+            headers: {
+                "content-type": "application/json"
+            },
+            body: JSON.stringify({ email })
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                if (data.modifiedCount) {
+                    toast.success("This Seller Is Now A Verified Seller")
+                }
+            })
+    }
+
+
     return (
         <table className="border-collapse w-full lg:mr-20 my-10">
             <thead className='bg-yellow-500'>
@@ -37,7 +56,13 @@ const AllSellers = () => {
                     allSellers.length < 1 && <h3 className='text-center text-lg h-screen w-full flex justify-center items-center'>No Seller Here...</h3>
                 }
                 {
-                    allSellers?.map(seller => <SingleSeller seller={seller} key={seller._id}></SingleSeller>)
+                    allSellers?.map(seller =>
+                        <SingleSeller
+                            key={seller._id}
+                            seller={seller}
+                            handleSellerVerification={handleSellerVerification}
+                        >
+                        </SingleSeller>)
                 }
             </tbody>
         </table>

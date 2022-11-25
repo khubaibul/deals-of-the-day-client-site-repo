@@ -10,7 +10,6 @@ const stripePromise = loadStripe(process.env.REACT_APP_stripe_pk);
 
 const Payment = () => {
     const { id } = useParams()
-    console.log(id);
 
     const { data: bookingProduct, isLoading, refetch } = useQuery({
         queryKey: ["all-sellers"],
@@ -31,7 +30,6 @@ const Payment = () => {
         </div>
     }
     const { buyerEmail, buyerName, price, productId, productImage, productName, _id } = bookingProduct;
-    console.log(bookingProduct);
     if (bookingProduct?.paid) {
         return <div>
             <h2 className='text-red-500 text-2xl font-bold text-center mt-10'>This Product Is Already Sold. Try Another Product.</h2>

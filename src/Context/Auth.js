@@ -3,7 +3,7 @@ export const setAuthToken = user => {
     const currentUser = {
         userName: user?.name || user?.displayName,
         email: user?.email,
-        buyerOrSeller: user?.buyerOrSeller || "Buyer"
+        buyerOrSeller: user?.buyerOrSeller
     };
 
 

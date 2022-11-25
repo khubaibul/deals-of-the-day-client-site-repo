@@ -23,9 +23,9 @@ const Categories = () => {
         </div>
     }
     return (
-        <div className='my-24 flex justify-center'>
+        <div className='my-32 flex justify-center'>
             <div>
-                <p className="text-center text-3xl my-5">Categories</p>
+                <h1 className="mb-5 text-3xl font-bold text-neutral text-center">CATEGORIES</h1>
                 <div className='grid lg:grid-cols-4 gap-2 w-full'>
                     {
                         categories.map((category, i) => <Category category={category} _id={i} key={i}></Category>)

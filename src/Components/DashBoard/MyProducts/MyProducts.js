@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import toast from 'react-hot-toast';
 import { Blocks } from 'react-loader-spinner';
 import { Link } from 'react-router-dom';
@@ -43,7 +43,24 @@ const MyProducts = () => {
             })
     }
 
-
+    const handleProductAdvertise = myProduct => {
+        fetch(`${process.env.REACT_APP_API_URL}/advertise-product`, {
+            method: "POST",
+            headers: {
+                "content-type": "application/json"
+            },
+            body: JSON.stringify(myProduct)
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.acknowledged) {
+                    toast.success(`${myProduct.productName} Added For Advertisement...`);
+                }
+                else {
+                    toast.error(data.message);
+                }
+            })
+    }
 
 
     return (
@@ -69,6 +86,7 @@ const MyProducts = () => {
                             key={myProduct._id}
                             myProduct={myProduct}
                             handleProductDelete={handleProductDelete}
+                            handleProductAdvertise={handleProductAdvertise}
                         ></MyProduct>
                     )
                 }

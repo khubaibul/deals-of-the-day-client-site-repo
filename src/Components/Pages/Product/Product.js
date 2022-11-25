@@ -47,7 +47,7 @@ const Product = ({ product, setSelectedProduct, handleWishList }) => {
                             <div>
                                 <h4 className='flex items-center gap-x-2 mt-4 font-semibold text-lg'>
                                     <FaUser></FaUser>
-                                    {sellerInformation.sellerName} ✅</h4>
+                                    {sellerInformation.sellerName} {`${product?.verification === "Verified" ? "✅" : ""}`}</h4>
                             </div>
                             <div className="inline-block align-bottom mt-4">
                                 <label

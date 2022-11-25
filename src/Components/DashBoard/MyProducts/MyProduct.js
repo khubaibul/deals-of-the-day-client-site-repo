@@ -1,10 +1,7 @@
 import React from 'react';
 
-const MyProduct = ({ myProduct, handleProductDelete }) => {
+const MyProduct = ({ myProduct, handleProductDelete, handleProductAdvertise, advertised }) => {
     const { productId, price, productImage, productName, _id, paid } = myProduct;
-    // const handleProductDelete = () => {
-    //     console.log("Clicked");
-    // }
     return (
         <tr className="bg-gray-400 flex lg:table-row flex-row lg:flex-row flex-wrap lg:flex-no-wrap mb-10 lg:mb-0">
             <td className="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
@@ -47,6 +44,7 @@ const MyProduct = ({ myProduct, handleProductDelete }) => {
                             </button>
 
                             <button
+                                onClick={() => handleProductAdvertise(myProduct)}
                                 className='btn btn-sm bg-neutral rounded-none px-6 text-slate-300 font-semibold'>Advertise</button>
                         </div>
                 }
