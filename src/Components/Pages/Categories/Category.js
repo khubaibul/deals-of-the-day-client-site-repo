@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 
 const Category = ({ category }) => {
     const { _id, category_img, category_name, bg_class, text_color } = category;
-    console.log(text_color);
     return (
         <Link to={`/category-details/${category_name}`}>
             <div className={`card w-full ${bg_class} rounded-none`}>

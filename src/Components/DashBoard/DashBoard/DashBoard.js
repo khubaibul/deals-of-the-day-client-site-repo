@@ -2,11 +2,11 @@ import React, { useContext } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { AuthContext } from '../../../Context/AuthContext/AuthProvider';
 import logo from "../../../Assets/Logo/deals_of_the_day_logo.png";
-// import useAdmin from '../../Hooks/useAdmin';
+import useAdmin from '../../../Hooks/useAdmin';
 
 const DashBoard = () => {
     const { user } = useContext(AuthContext);
-    // const [isAdmin] = useAdmin(user?.email);
+    const [isAdmin] = useAdmin(user?.email);
     let activeStyle = {
         // textDecoration: "underline"
     };
@@ -97,36 +97,42 @@ const DashBoard = () => {
                                 </NavLink>
                             </li>
                         </ul>
-                        <ul className="mt-6 space-y-2 tracking-wide">
-                            <li className="min-w-max">
-                                <NavLink
-                                    style={({ isActive }) =>
-                                        isActive ? activeStyle : undefined}
-                                    to="/dashboard/all-sellers" aria-label="all-sellers" className="relative flex items-center space-x-4 bg-gradient-to-r from-sky-600 to-cyan-400 px-4 py-3 text-white">
-                                    <svg className="-ml-1 h-6 w-6" viewBox="0 0 24 24" fill="none">
-                                        <path d="M6 8a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2v1a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V8ZM6 15a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2v1a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2v-1Z" className="fill-current text-cyan-400 dark:fill-slate-600"></path>
-                                        <path d="M13 8a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2v1a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2V8Z" className="fill-current text-cyan-200 group-hover:text-cyan-300"></path>
-                                        <path d="M13 15a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2v1a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-1Z" className="fill-current group-hover:text-sky-300"></path>
-                                    </svg>
-                                    <span className="-mr-1 font-medium">All Sellers</span>
-                                </NavLink>
-                            </li>
-                        </ul>
-                        <ul className="mt-6 space-y-2 tracking-wide">
-                            <li className="min-w-max">
-                                <NavLink
-                                    style={({ isActive }) =>
-                                        isActive ? activeStyle : undefined}
-                                    to="/dashboard/all-buyers" aria-label="all-buyers" className="relative flex items-center space-x-4 bg-gradient-to-r from-sky-600 to-cyan-400 px-4 py-3 text-white">
-                                    <svg className="-ml-1 h-6 w-6" viewBox="0 0 24 24" fill="none">
-                                        <path d="M6 8a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2v1a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V8ZM6 15a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2v1a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2v-1Z" className="fill-current text-cyan-400 dark:fill-slate-600"></path>
-                                        <path d="M13 8a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2v1a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2V8Z" className="fill-current text-cyan-200 group-hover:text-cyan-300"></path>
-                                        <path d="M13 15a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2v1a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-1Z" className="fill-current group-hover:text-sky-300"></path>
-                                    </svg>
-                                    <span className="-mr-1 font-medium">All Buyers</span>
-                                </NavLink>
-                            </li>
-                        </ul>
+                        {
+                            isAdmin &&
+                            <ul className="mt-6 space-y-2 tracking-wide">
+                                <li className="min-w-max">
+                                    <NavLink
+                                        style={({ isActive }) =>
+                                            isActive ? activeStyle : undefined}
+                                        to="/dashboard/all-sellers" aria-label="all-sellers" className="relative flex items-center space-x-4 bg-gradient-to-r from-sky-600 to-cyan-400 px-4 py-3 text-white">
+                                        <svg className="-ml-1 h-6 w-6" viewBox="0 0 24 24" fill="none">
+                                            <path d="M6 8a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2v1a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V8ZM6 15a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2v1a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2v-1Z" className="fill-current text-cyan-400 dark:fill-slate-600"></path>
+                                            <path d="M13 8a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2v1a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2V8Z" className="fill-current text-cyan-200 group-hover:text-cyan-300"></path>
+                                            <path d="M13 15a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2v1a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-1Z" className="fill-current group-hover:text-sky-300"></path>
+                                        </svg>
+                                        <span className="-mr-1 font-medium">All Sellers</span>
+                                    </NavLink>
+                                </li>
+                            </ul>
+                        }
+                        {
+                            isAdmin &&
+                            <ul className="mt-6 space-y-2 tracking-wide">
+                                <li className="min-w-max">
+                                    <NavLink
+                                        style={({ isActive }) =>
+                                            isActive ? activeStyle : undefined}
+                                        to="/dashboard/all-buyers" aria-label="all-buyers" className="relative flex items-center space-x-4 bg-gradient-to-r from-sky-600 to-cyan-400 px-4 py-3 text-white">
+                                        <svg className="-ml-1 h-6 w-6" viewBox="0 0 24 24" fill="none">
+                                            <path d="M6 8a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2v1a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V8ZM6 15a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2v1a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2v-1Z" className="fill-current text-cyan-400 dark:fill-slate-600"></path>
+                                            <path d="M13 8a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2v1a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2V8Z" className="fill-current text-cyan-200 group-hover:text-cyan-300"></path>
+                                            <path d="M13 15a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2v1a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-1Z" className="fill-current group-hover:text-sky-300"></path>
+                                        </svg>
+                                        <span className="-mr-1 font-medium">All Buyers</span>
+                                    </NavLink>
+                                </li>
+                            </ul>
+                        }
                         {/* {
                             isAdmin &&
                             <ul className="mt-6 space-y-2 tracking-wide">

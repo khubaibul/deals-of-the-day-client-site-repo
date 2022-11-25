@@ -6,6 +6,7 @@ import DefaultDashBoard from "../Components/DashBoard/DefaultDashBoard/DefaultDa
 import MyOrders from "../Components/DashBoard/MyOrders/MyOrders";
 import MyProducts from "../Components/DashBoard/MyProducts/MyProducts";
 import MyWishlist from "../Components/DashBoard/MyWishlist/MyWishlist";
+import Payment from "../Components/DashBoard/Payment/Payment";
 import Blogs from "../Components/Pages/Blogs/Blogs";
 import CategoryDetails from "../Components/Pages/Categories/CategoryDetails";
 import Home from "../Components/Pages/Home/Home/Home";
@@ -15,6 +16,7 @@ import SignUp from "../Components/Shared/Authentication/SignUp/SignUp";
 import ErrorPage from "../Components/Shared/ErrorPage/ErrorPage";
 import DashBoardLayout from "../Layouts/DashBoardLayout";
 import MainLayout from "../Layouts/MainLayout";
+import AdminPrivateRoute from "./AdminPrivateRoute";
 import PrivateRoute from "./PrivateRoute";
 
 export const router = createBrowserRouter([
@@ -73,12 +75,16 @@ export const router = createBrowserRouter([
                         element: <MyOrders></MyOrders>
                     },
                     {
+                        path: "/dashboard/payment/:id",
+                        element: <Payment></Payment>
+                    },
+                    {
                         path: "/dashboard/all-sellers",
-                        element: <AllSellers></AllSellers>
+                        element: <AdminPrivateRoute><AllSellers></AllSellers></AdminPrivateRoute>
                     },
                     {
                         path: "/dashboard/all-buyers",
-                        element: <AllBuyers></AllBuyers>
+                        element: <AdminPrivateRoute><AllBuyers></AllBuyers></AdminPrivateRoute>
                     },
                 ]
             }

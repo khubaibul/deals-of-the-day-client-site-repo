@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const MyOrder = ({ myOrder }) => {
     const { productId, price, productImage, productName, _id } = myOrder;
@@ -22,9 +23,18 @@ const MyOrder = ({ myOrder }) => {
             </td>
             <td className="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static">
                 <span className="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Payment</span>
-                <button className='btn btn-sm bg-neutral rounded-none px-6 text-slate-300 font-semibold'>Pay</button>
+                {
+                    myOrder?.paid ? <p className='bg-green-600 p-1 w-1/2 mx-auto text-slate-300 font-semibold'>Paid ✅</p>
+                        :
+                        <Link to={`/dashboard/payment/${_id}`}>
+                            <button
+                                className='btn btn-sm bg-neutral rounded-none px-6 text-slate-300 font-semibold'>
+                                Pay
+                            </button>
+                        </Link>
+                }
             </td>
-        </tr>
+        </tr >
     );
 };
 
