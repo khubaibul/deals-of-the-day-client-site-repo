@@ -26,7 +26,7 @@ const MyOrder = ({ myOrder }) => {
                 {
                     myOrder?.paid ? <p className='bg-green-600 p-1 w-1/2 mx-auto text-slate-300 font-semibold'>Paid ✅</p>
                         :
-                        <Link to={`/dashboard/payment/${_id}`}>
+                        <Link to={`/dashboard/payment/${productId}`}>
                             <button
                                 className='btn btn-sm bg-neutral rounded-none px-6 text-slate-300 font-semibold'>
                                 Pay

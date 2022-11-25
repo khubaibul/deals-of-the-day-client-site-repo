@@ -1,5 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import React, { useContext } from 'react';
+import toast from 'react-hot-toast';
 import { Blocks } from 'react-loader-spinner';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../Context/AuthContext/AuthProvider';
@@ -28,6 +29,23 @@ const MyProducts = () => {
     }
 
 
+    const handleProductDelete = myProduct => {
+        fetch(`${process.env.REACT_APP_API_URL}/delete-product/${myProduct?._id}`, {
+            method: "DELETE"
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                if (data.deletedCount) {
+                    toast.success(`${myProduct.productName} Deleted Successfully...`);
+                    refetch();
+                }
+            })
+    }
+
+
+
+
     return (
         <table className="border-collapse w-full lg:mr-20 my-10">
             <thead className='bg-yellow-500'>
@@ -50,6 +68,7 @@ const MyProducts = () => {
                         <MyProduct
                             key={myProduct._id}
                             myProduct={myProduct}
+                            handleProductDelete={handleProductDelete}
                         ></MyProduct>
                     )
                 }

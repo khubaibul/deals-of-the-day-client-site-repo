@@ -10,6 +10,7 @@ const stripePromise = loadStripe(process.env.REACT_APP_stripe_pk);
 
 const Payment = () => {
     const { id } = useParams()
+    console.log(id);
 
     const { data: bookingProduct, isLoading, refetch } = useQuery({
         queryKey: ["all-sellers"],
@@ -30,6 +31,12 @@ const Payment = () => {
         </div>
     }
     const { buyerEmail, buyerName, price, productId, productImage, productName, _id } = bookingProduct;
+    console.log(bookingProduct);
+    if (bookingProduct?.paid) {
+        return <div>
+            <h2 className='text-red-500 text-2xl font-bold text-center mt-10'>This Product Is Already Sold. Try Another Product.</h2>
+        </div>
+    }
     return (
         <div className='flex items-center justify-center min-h-screen from-teal-100 via-teal-300 to-teal-500 bg-gradient-to-br w-full'>
             <div className="flex flex-col items-center justify-center relative lg:w-1/3">
