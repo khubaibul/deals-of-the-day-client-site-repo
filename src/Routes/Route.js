@@ -1,8 +1,11 @@
 import { createBrowserRouter } from "react-router-dom";
 import AddProducts from "../Components/DashBoard/AddProduct/AddProduct";
-import MyOrders from "../Components/DashBoard/DashBoard/MyOrders/MyOrders";
-import MyProducts from "../Components/DashBoard/DashBoard/MyProducts/MyProducts";
+import AllBuyers from "../Components/DashBoard/AllBuyers/AllBuyers";
+import AllSellers from "../Components/DashBoard/AllSellers/AllSellers";
 import DefaultDashBoard from "../Components/DashBoard/DefaultDashBoard/DefaultDashBoard";
+import MyOrders from "../Components/DashBoard/MyOrders/MyOrders";
+import MyProducts from "../Components/DashBoard/MyProducts/MyProducts";
+import MyWishlist from "../Components/DashBoard/MyWishlist/MyWishlist";
 import Blogs from "../Components/Pages/Blogs/Blogs";
 import CategoryDetails from "../Components/Pages/Categories/CategoryDetails";
 import Home from "../Components/Pages/Home/Home/Home";
@@ -62,8 +65,20 @@ export const router = createBrowserRouter([
                         element: <MyProducts></MyProducts>
                     },
                     {
+                        path: "/dashboard/my-wishlist",
+                        element: <MyWishlist></MyWishlist>
+                    },
+                    {
                         path: "/dashboard/my-orders",
                         element: <MyOrders></MyOrders>
+                    },
+                    {
+                        path: "/dashboard/all-sellers",
+                        element: <AllSellers></AllSellers>
+                    },
+                    {
+                        path: "/dashboard/all-buyers",
+                        element: <AllBuyers></AllBuyers>
                     },
                 ]
             }
