@@ -25,7 +25,7 @@ const AddProducts = () => {
         const sellerInformation = {
             sellerName: form.sellerName.value,
             sellerLocation: form.sellerLocation.value,
-            sellerPhoneNumber: form.sellerPhoneNumber.value
+            sellerPhoneNumber: form.sellerPhoneNumber.value,
         }
         const productDescription = form.description.value;
 
@@ -59,6 +59,7 @@ const AddProducts = () => {
                     price,
                     usedFor,
                     productImage: data.data.display_url,
+                    sellerEmail: user.email,
                     sellerInformation,
                     productDescription,
                     addedDate
@@ -132,6 +133,10 @@ const AddProducts = () => {
                     <div>
                         <label htmlFor="usedFor" className="block mb-2 text-sm  text-gray-800 font-bold">Used For (Months)</label>
                         <input type="number" name="usedFor" className="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder='10 Months' required />
+                    </div>
+                    <div>
+                        <label htmlFor="sellerEmail" className="block mb-2 text-sm  text-gray-800 font-bold">Your Email</label>
+                        <input type="email" name="sellerEmail" className="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder='abc@gmail.com' readOnly defaultValue={user.email} />
                     </div>
                 </div>
                 <div className="mb-6">
