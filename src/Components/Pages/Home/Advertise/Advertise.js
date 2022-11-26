@@ -47,7 +47,7 @@ const Advertise = () => {
 
     };
 
-    if (advertisementProducts) {
+    if (advertisementProducts.length) {
         return <div className='my-48'>
             <h1 className="mb-5 text-3xl font-bold text-neutral text-center">ADVERTISED PRODUCT</h1>
             <Slider {...settings}>
