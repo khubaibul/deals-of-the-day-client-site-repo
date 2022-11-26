@@ -47,7 +47,8 @@ const MyProducts = () => {
         fetch(`${process.env.REACT_APP_API_URL}/advertise-product`, {
             method: "POST",
             headers: {
-                "content-type": "application/json"
+                "content-type": "application/json",
+                authorization: `bearer ${localStorage.getItem("deals-of-the-day")}`
             },
             body: JSON.stringify(myProduct)
         })

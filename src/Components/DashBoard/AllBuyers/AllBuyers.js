@@ -8,7 +8,11 @@ const AllBuyers = () => {
     const [loading, setLoading] = useState(false);
     const { data: allBuyers = [], isLoading, refetch } = useQuery({
         queryKey: ["all-buyers"],
-        queryFn: () => fetch(`${process.env.REACT_APP_API_URL}/all-buyers`)
+        queryFn: () => fetch(`${process.env.REACT_APP_API_URL}/all-buyers`,{
+            headers: {
+                authorization: `bearer ${localStorage.getItem("deals-of-the-day")}`
+            }
+        })
             .then(res => res.json())
     })
 

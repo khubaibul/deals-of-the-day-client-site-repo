@@ -57,6 +57,7 @@ const AuthProvider = ({ children }) => {
     // Logout
     const logOut = () => {
         setLoading(false);
+        localStorage.removeItem('deals-of-the-day')
         return signOut(auth);
     }
 

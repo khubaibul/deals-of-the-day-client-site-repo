@@ -8,8 +8,11 @@ const useSeller = email => {
             fetch(`${process.env.REACT_APP_API_URL}/user/seller/${email}`)
                 .then(res => res.json())
                 .then(data => {
-                    setIsSeller(data.isSeller)
-                    setIsSellerLoading(false);
+                    if (data.isSeller === "Seller") {
+                        setIsSeller(data.isSeller)
+                        setIsSellerLoading(false);
+                    }
+
                 })
         }
     }, [email]);

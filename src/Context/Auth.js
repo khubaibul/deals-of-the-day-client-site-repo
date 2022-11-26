@@ -17,6 +17,6 @@ export const setAuthToken = user => {
     })
         .then(res => res.json())
         .then(data => {
-            // localStorage.setItem("hotel-booking-bd", data.token)
+            localStorage.setItem("deals-of-the-day", data.token)
         })
 }

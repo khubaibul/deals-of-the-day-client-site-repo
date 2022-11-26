@@ -10,7 +10,11 @@ const MyOrders = () => {
 
     const { data: myOrders = [], isLoading, refetch } = useQuery({
         queryKey: ["myOrders", user?.email],
-        queryFn: () => fetch(`${process.env.REACT_APP_API_URL}/myOrders?email=${user?.email}`)
+        queryFn: () => fetch(`${process.env.REACT_APP_API_URL}/myOrders?email=${user?.email}`, {
+            headers: {
+                authorization: `bearer ${localStorage.getItem("deals-of-the-day")}`
+            }
+        })
             .then(res => res.json())
     })
 
@@ -39,12 +43,12 @@ const MyOrders = () => {
             </thead>
             <tbody>
                 {
-                    myOrders.length < 1 && <h3 className='text-center text-lg h-screen w-full flex justify-center items-center'>
+                    myOrders.length < 1 && <p className='text-center text-lg h-screen w-full flex justify-center items-center'>
                         You Haven't Any Booking Yet. Please
-                        <Link to="/" className='underline underline-offset-2 ml-1'>  Booking...</Link></h3>
+                        <Link to="/" className='underline underline-offset-2 ml-1'>  Booking...</Link></p>
                 }
                 {
-                    myOrders?.map(myOrder =>
+                    myOrders.length > 0 && myOrders?.map(myOrder =>
                         <MyOrder
                             key={myOrder._id}
                             myOrder={myOrder}
