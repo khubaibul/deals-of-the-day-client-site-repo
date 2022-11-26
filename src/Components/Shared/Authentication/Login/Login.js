@@ -7,8 +7,12 @@ import SharedButton from '../../Button/SharedButton'
 import { AuthContext } from '../../../../Context/AuthContext/AuthProvider';
 import SmallSpinner from '../../Button/SmallSpinner';
 import { setAuthToken } from '../../../../Context/Auth';
+import useDynamicTitle from '../../../../Hooks/useDynamicTitle';
 
 const Login = () => {
+
+    useDynamicTitle("Login")
+
     const [userEmail, setUserEmail] = useState("");
     const [loading, setLoading] = useState(false);
     const { signIn, signInWithGoogle, signInWithFacebook, resetPassword } = useContext(AuthContext);

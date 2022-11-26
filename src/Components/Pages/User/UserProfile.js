@@ -2,8 +2,11 @@ import React, { useContext } from 'react';
 import { FaMailBulk, FaUserCircle } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../Context/AuthContext/AuthProvider';
+import useDynamicTitle from '../../../Hooks/useDynamicTitle';
 
 const UserProfile = () => {
+
+    useDynamicTitle("User-Profile")
     const { user, logOut, theme } = useContext(AuthContext);
 
     return (

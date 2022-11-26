@@ -1,8 +1,8 @@
 import React from 'react';
-// import useDynamicTitle from '../../Hooks/useDynamicTitle';
+import useDynamicTitle from '../../../Hooks/useDynamicTitle';
 
 const DefaultDashBoard = () => {
-    // useDynamicTitle("Admin Dashboard")
+    useDynamicTitle("Dashboard")
     return (
         <div className='lg:mt-40'>
             <div className='mb-14'>

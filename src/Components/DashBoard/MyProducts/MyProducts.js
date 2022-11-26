@@ -4,9 +4,12 @@ import toast from 'react-hot-toast';
 import { Blocks } from 'react-loader-spinner';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../Context/AuthContext/AuthProvider';
+import useDynamicTitle from '../../../Hooks/useDynamicTitle';
 import MyProduct from './MyProduct';
 
 const MyProducts = () => {
+
+    useDynamicTitle("MyProducts-Dashboard")
     const { user } = useContext(AuthContext);
 
     const { data: myProducts = [], isLoading, refetch } = useQuery({

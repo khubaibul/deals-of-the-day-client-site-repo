@@ -6,8 +6,13 @@ import { AuthContext } from '../../../../Context/AuthContext/AuthProvider';
 import SharedButton from '../../Button/SharedButton';
 import SmallSpinner from '../../Button/SmallSpinner';
 import { setAuthToken } from '../../../../Context/Auth';
+import useDynamicTitle from '../../../../Hooks/useDynamicTitle';
 
 const Signup = () => {
+
+    useDynamicTitle("Signup")
+
+
     const [loading, setLoading] = useState(false);
     const { createUser, updateUserProfile, signInWithGoogle, signInWithFacebook, user } = useContext(AuthContext);
     const location = useLocation();

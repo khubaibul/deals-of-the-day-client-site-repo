@@ -3,8 +3,13 @@ import React, { useContext } from 'react';
 import { Blocks } from 'react-loader-spinner';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../Context/AuthContext/AuthProvider';
+import useDynamicTitle from '../../../Hooks/useDynamicTitle';
 
 const MyWishlist = () => {
+
+    useDynamicTitle("MyWishlist-Dashboard")
+
+
     const { user } = useContext(AuthContext);
     const { data: myWishlist = [], isLoading, refetch } = useQuery({
         queryKey: ["my-wishlist"],

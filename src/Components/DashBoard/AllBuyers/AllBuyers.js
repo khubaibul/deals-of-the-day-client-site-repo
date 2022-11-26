@@ -2,13 +2,16 @@ import { useQuery } from '@tanstack/react-query';
 import React, { useState } from 'react';
 import toast from 'react-hot-toast';
 import { Blocks } from 'react-loader-spinner';
+import useDynamicTitle from '../../../Hooks/useDynamicTitle';
 import SingleBuyer from './SingleBuyer';
 
 const AllBuyers = () => {
+
+    useDynamicTitle("AllBuyers-Dashboard")
     const [loading, setLoading] = useState(false);
     const { data: allBuyers = [], isLoading, refetch } = useQuery({
         queryKey: ["all-buyers"],
-        queryFn: () => fetch(`${process.env.REACT_APP_API_URL}/all-buyers`,{
+        queryFn: () => fetch(`${process.env.REACT_APP_API_URL}/all-buyers`, {
             headers: {
                 authorization: `bearer ${localStorage.getItem("deals-of-the-day")}`
             }

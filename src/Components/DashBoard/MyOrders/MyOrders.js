@@ -3,9 +3,12 @@ import React, { useContext } from 'react';
 import { Blocks } from 'react-loader-spinner';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../Context/AuthContext/AuthProvider';
+import useDynamicTitle from '../../../Hooks/useDynamicTitle';
 import MyOrder from './MyOrder';
 
 const MyOrders = () => {
+
+    useDynamicTitle("MyOrders-Dashboard");
     const { user } = useContext(AuthContext);
 
     const { data: myOrders = [], isLoading, refetch } = useQuery({

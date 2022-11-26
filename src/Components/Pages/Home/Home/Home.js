@@ -4,8 +4,12 @@ import Categories from '../../Categories/Categories';
 import Hero from '../Hero/Hero';
 import HomeBottomBanner from '../HomeBottomBanner/HomeBottomBanner';
 import Reviews from '../Reviews/Reviews';
+import useDynamicTitle from '../../../../Hooks/useDynamicTitle';
 
 const Home = () => {
+    useDynamicTitle("Home")
+
+
     return (
         <div className='overflow-hidden'>
             <Hero></Hero>

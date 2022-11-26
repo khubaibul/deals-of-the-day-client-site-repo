@@ -2,10 +2,13 @@ import React, { useContext, useState } from 'react';
 import toast from 'react-hot-toast';
 import { useLoaderData, useParams } from 'react-router-dom';
 import { AuthContext } from '../../../Context/AuthContext/AuthProvider';
+import useDynamicTitle from '../../../Hooks/useDynamicTitle';
 import BookingModal from '../BookingModal/BookingModal';
 import Product from '../Product/Product';
 
 const CategoryDetails = () => {
+
+    useDynamicTitle("Category-Details");
 
     const categoryProducts = useLoaderData();
     const { category_name } = useParams();

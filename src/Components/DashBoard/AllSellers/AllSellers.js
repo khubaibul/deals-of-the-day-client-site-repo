@@ -2,10 +2,13 @@ import { useQuery } from '@tanstack/react-query';
 import React, { useState } from 'react';
 import toast from 'react-hot-toast';
 import { Blocks } from 'react-loader-spinner';
+import useDynamicTitle from '../../../Hooks/useDynamicTitle';
 import SmallSpinner from '../../Shared/Button/SmallSpinner';
 import SingleSeller from './SingleSeller';
 
 const AllSellers = () => {
+
+    useDynamicTitle("AllSellers-Dashboard")
     const [loading, setLoading] = useState(false);
     const { data: allSellers = [], isLoading, refetch } = useQuery({
         queryKey: ["all-sellers"],

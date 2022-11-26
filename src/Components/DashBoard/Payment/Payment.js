@@ -4,11 +4,13 @@ import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 import { Blocks } from 'react-loader-spinner';
 import { useParams } from 'react-router-dom';
+import useDynamicTitle from '../../../Hooks/useDynamicTitle';
 import CheckoutForm from './CheckoutForm';
 
 const stripePromise = loadStripe(process.env.REACT_APP_stripe_pk);
 
 const Payment = () => {
+    useDynamicTitle("Payments")
     const { id } = useParams();
     console.log(id);
 

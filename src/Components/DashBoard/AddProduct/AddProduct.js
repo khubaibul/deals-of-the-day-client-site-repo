@@ -2,15 +2,15 @@ import React, { useContext, useState } from 'react';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../Context/AuthContext/AuthProvider';
+import useDynamicTitle from '../../../Hooks/useDynamicTitle';
 import SmallSpinner from '../../Shared/Button/SmallSpinner';
-// import useDynamicTitle from '../../../Hooks/useDynamicTitle';
 
 const AddProducts = () => {
     const [loading, setLoading] = useState(false);
     const { user } = useContext(AuthContext);
     const navigate = useNavigate();
 
-    // useDynamicTitle("Add Food - Admin Dashboard")
+    useDynamicTitle("Add Food-Dashboard")
 
     const handleAddFood = e => {
         e.preventDefault();
