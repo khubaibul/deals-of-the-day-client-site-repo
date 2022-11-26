@@ -1,6 +1,6 @@
 # Deals Of The Day
 
-## Live Site Link :
+## Live Site Link : https://deals-of-the-day-61353.web.app/
 
 ### Features
 
@@ -37,3 +37,9 @@
     
 - JWT
 - Card Payment ( Stripe )
+
+
+
+## Admin 
+<> Email : admin@gmail.com <>
+<> Password : 123456789 <>
