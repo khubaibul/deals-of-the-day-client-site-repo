@@ -9,7 +9,8 @@ import CheckoutForm from './CheckoutForm';
 const stripePromise = loadStripe(process.env.REACT_APP_stripe_pk);
 
 const Payment = () => {
-    const { id } = useParams()
+    const { id } = useParams();
+    console.log(id);
 
     const { data: bookingProduct, isLoading, refetch } = useQuery({
         queryKey: ["all-sellers"],

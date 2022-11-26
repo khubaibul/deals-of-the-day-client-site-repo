@@ -15,23 +15,22 @@ const facebookProvider = new FacebookAuthProvider();
 const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
-    const [theme, setTheme] = useState(false);
 
     // Create User
     const createUser = (email, password) => {
-        setLoading(true)
+        setLoading(false)
         return createUserWithEmailAndPassword(auth, email, password)
     }
 
     //Login with Email-Password
     const signIn = (email, password) => {
-        setLoading(true)
+        setLoading(false)
         return signInWithEmailAndPassword(auth, email, password)
     }
 
     // Update UerProfile
     const updateUserProfile = (name, photo) => {
-        setLoading(true)
+        setLoading(false)
         return updateProfile(auth.currentUser, {
             displayName: name,
             photoURL: photo,
@@ -40,24 +39,24 @@ const AuthProvider = ({ children }) => {
 
     // Google SignIn
     const signInWithGoogle = () => {
-        setLoading(true)
+        setLoading(false)
         return signInWithPopup(auth, googleProvider)
     }
 
     // Facebook SignIn
     const signInWithFacebook = () => {
-        setLoading(true)
+        setLoading(false)
         return signInWithPopup(auth, facebookProvider)
     }
     // Reset Password
     const resetPassword = email => {
-        setLoading(true)
+        setLoading(false)
         return sendPasswordResetEmail(auth, email)
     }
 
     // Logout
     const logOut = () => {
-        setLoading(true);
+        setLoading(false);
         return signOut(auth);
     }
 
@@ -65,14 +64,13 @@ const AuthProvider = ({ children }) => {
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, currentUser => {
             if (user === null) {
+                setLoading(false);
                 setUser(currentUser);
             }
-            setLoading(false);
-        })
+        });
 
-        return () => {
-            unsubscribe()
-        }
+        return () => unsubscribe()
+
     }, []);
 
     const authInfo = {
@@ -85,9 +83,7 @@ const AuthProvider = ({ children }) => {
         signIn,
         resetPassword,
         loading,
-        setLoading,
-        theme,
-        setTheme
+        setLoading
     }
 
     return (

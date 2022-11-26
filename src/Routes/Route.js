@@ -18,6 +18,7 @@ import DashBoardLayout from "../Layouts/DashBoardLayout";
 import MainLayout from "../Layouts/MainLayout";
 import AdminPrivateRoute from "./AdminPrivateRoute";
 import PrivateRoute from "./PrivateRoute";
+import SellerPrivateRoute from "./SellerPrivateRoute";
 
 export const router = createBrowserRouter([
     {
@@ -60,11 +61,11 @@ export const router = createBrowserRouter([
                     },
                     {
                         path: "/dashboard/add-product",
-                        element: <AddProducts></AddProducts>
+                        element: <SellerPrivateRoute><AddProducts></AddProducts></SellerPrivateRoute>
                     },
                     {
                         path: "/dashboard/my-products",
-                        element: <MyProducts></MyProducts>
+                        element: <SellerPrivateRoute><MyProducts></MyProducts></SellerPrivateRoute>
                     },
                     {
                         path: "/dashboard/my-wishlist",

@@ -1,6 +1,6 @@
 import React from 'react';
 
-const SingleSeller = ({ seller, handleSellerVerification }) => {
+const SingleSeller = ({ seller, handleSellerVerification, handleSellerDelete }) => {
     const { email, userName } = seller;
     return (
         <tr className="bg-gray-400 flex lg:table-row flex-row lg:flex-row flex-wrap lg:flex-no-wrap mb-10 lg:mb-0">
@@ -18,7 +18,9 @@ const SingleSeller = ({ seller, handleSellerVerification }) => {
                     <button
                         onClick={() => handleSellerVerification(email)}
                         className='btn btn-sm bg-neutral rounded-none px-6 text-slate-300 font-semibold'>Verification</button>
-                    <button className='btn btn-sm bg-red-500 hover:bg-red-500 rounded-none px-6 text-slate-300 font-semibold'>Delete</button>
+                    <button
+                        onClick={() => handleSellerDelete(email)}
+                        className='btn btn-sm bg-red-500 hover:bg-red-500 rounded-none px-6 text-slate-300 font-semibold'>Delete</button>
                 </div>
             </td>
         </tr>

@@ -1,9 +1,11 @@
 import { useQuery } from '@tanstack/react-query';
-import React from 'react';
+import React, { useState } from 'react';
+import toast from 'react-hot-toast';
 import { Blocks } from 'react-loader-spinner';
 import SingleBuyer from './SingleBuyer';
 
 const AllBuyers = () => {
+    const [loading, setLoading] = useState(false);
     const { data: allBuyers = [], isLoading, refetch } = useQuery({
         queryKey: ["all-buyers"],
         queryFn: () => fetch(`${process.env.REACT_APP_API_URL}/all-buyers`)
@@ -23,6 +25,21 @@ const AllBuyers = () => {
         </div>
     }
 
+    const handleDeleteBuyer = email => {
+        setLoading(true);
+        fetch(`${process.env.REACT_APP_API_URL}/buyer-delete/${email}`, {
+            method: "DELETE"
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.deletedCount) {
+                    toast.success("Buyer Deleted Successfully...");
+                    setLoading(false);
+                    refetch();
+                }
+            })
+    }
+
     return (
         <table className="border-collapse w-full lg:mr-20 my-10">
             <thead className='bg-yellow-500'>
@@ -37,7 +54,12 @@ const AllBuyers = () => {
                     allBuyers.length < 1 && <h3 className='text-center text-lg h-screen w-full flex justify-center items-center'>No Buyer Here...</h3>
                 }
                 {
-                    allBuyers?.map(buyer => <SingleBuyer key={buyer._id} buyer={buyer}></SingleBuyer>)
+                    allBuyers?.map(buyer => <SingleBuyer
+                        key={buyer._id}
+                        buyer={buyer}
+                        handleDeleteBuyer={handleDeleteBuyer}
+                    >
+                    </SingleBuyer>)
                 }
             </tbody>
         </table>

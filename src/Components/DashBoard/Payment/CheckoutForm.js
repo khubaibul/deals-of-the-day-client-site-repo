@@ -11,7 +11,8 @@ const CheckoutForm = ({ bookingProduct }) => {
     const [transactionId, setTransactionId] = useState("")
     const [cardError, setCardError] = useState('');
 
-    const { buyerEmail, buyerName, price, productId, productImage, productName, _id } = bookingProduct;
+    const { buyerEmail, buyerName, price, productImage, productName, _id } = bookingProduct;
+    console.log(bookingProduct);
 
     const navigate = useNavigate();
 
@@ -87,7 +88,6 @@ const CheckoutForm = ({ bookingProduct }) => {
 
             const payment = {
                 bookingId: _id,
-                productId,
                 buyerEmail,
                 productName,
                 price,

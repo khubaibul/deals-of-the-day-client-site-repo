@@ -10,7 +10,8 @@ import { setAuthToken } from '../../../../Context/Auth';
 
 const Login = () => {
     const [userEmail, setUserEmail] = useState("");
-    const { signIn, signInWithGoogle, signInWithFacebook, resetPassword, loading, setLoading } = useContext(AuthContext);
+    const [loading, setLoading] = useState(false);
+    const { signIn, signInWithGoogle, signInWithFacebook, resetPassword } = useContext(AuthContext);
     const location = useLocation();
     const navigate = useNavigate();
     const from = location.state?.from?.pathname || "/user-profile";
@@ -20,6 +21,7 @@ const Login = () => {
     // SignIn User
     const handleSubmit = e => {
         e.preventDefault();
+        setLoading(true);
         const form = e.target;
         const email = form.email.value;
         const password = form.password.value;

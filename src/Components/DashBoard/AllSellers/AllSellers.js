@@ -1,10 +1,12 @@
 import { useQuery } from '@tanstack/react-query';
-import React from 'react';
+import React, { useState } from 'react';
 import toast from 'react-hot-toast';
 import { Blocks } from 'react-loader-spinner';
+import SmallSpinner from '../../Shared/Button/SmallSpinner';
 import SingleSeller from './SingleSeller';
 
 const AllSellers = () => {
+    const [loading, setLoading] = useState(false);
     const { data: allSellers = [], isLoading, refetch } = useQuery({
         queryKey: ["all-sellers"],
         queryFn: () => fetch(`${process.env.REACT_APP_API_URL}/all-sellers`)
@@ -34,9 +36,27 @@ const AllSellers = () => {
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data);
                 if (data.modifiedCount) {
                     toast.success("This Seller Is Now A Verified Seller")
+                }
+                else {
+                    toast.error("Already Verified.")
+                }
+            })
+    }
+
+
+    const handleSellerDelete = (email) => {
+        setLoading(true);
+        fetch(`${process.env.REACT_APP_API_URL}/seller-delete/${email}`, {
+            method: "DELETE"
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.deletedCount) {
+                    toast.success("Seller Deleted Successfully...");
+                    setLoading(false);
+                    refetch();
                 }
             })
     }
@@ -44,6 +64,9 @@ const AllSellers = () => {
 
     return (
         <table className="border-collapse w-full lg:mr-20 my-10">
+            {
+                loading && <SmallSpinner></SmallSpinner>
+            }
             <thead className='bg-yellow-500'>
                 <tr>
                     <th className="p-3 font-bold uppercase text-gray-600 border border-gray-300 hidden lg:table-cell">Seller Name</th>
@@ -61,6 +84,7 @@ const AllSellers = () => {
                             key={seller._id}
                             seller={seller}
                             handleSellerVerification={handleSellerVerification}
+                            handleSellerDelete={handleSellerDelete}
                         >
                         </SingleSeller>)
                 }
