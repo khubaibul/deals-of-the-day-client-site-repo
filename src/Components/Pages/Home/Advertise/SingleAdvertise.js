@@ -11,7 +11,7 @@ const SingleAdvertise = ({ product }) => {
                 <figure>
                     <img className='w-full lg:h-96 h-32' src={productImage} alt="Shoes" />
                 </figure>
-                <div className=' absolute inset-0 pt-4 transition-opacity duration-200 bg-black bg-opacity-75 opacity-0 hover:opacity-100 flex justify-center items-end'>
+                <div className='absolute inset-0 pt-4 transition-opacity duration-200 bg-black bg-opacity-75 opacity-0 hover:opacity-100 flex justify-center items-end'>
                     <div className='bg-neutral w-full text-center text-slate-200'>
                         <p><FontAwesomeIcon className='mr-1' icon={faMoneyBill1}></FontAwesomeIcon>BDT {price}</p>
                         <div className='flex text-xl justify-center gap-x-8 font-bold'>
