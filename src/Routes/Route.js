@@ -10,6 +10,7 @@ import Payment from "../Components/DashBoard/Payment/Payment";
 import Blogs from "../Components/Pages/Blogs/Blogs";
 import CategoryDetails from "../Components/Pages/Categories/CategoryDetails";
 import Home from "../Components/Pages/Home/Home/Home";
+import Products from "../Components/Pages/Products/Products";
 import UserProfile from "../Components/Pages/User/UserProfile";
 import Login from "../Components/Shared/Authentication/Login/Login";
 import SignUp from "../Components/Shared/Authentication/SignUp/SignUp";
@@ -39,12 +40,12 @@ export const router = createBrowserRouter([
                 element: <SignUp></SignUp>
             },
             {
-                path: "/blogs",
-                element: <Blogs></Blogs>
-            },
-            {
                 path: "/user-profile",
                 element: <UserProfile></UserProfile>
+            },
+            {
+                path: "all-products",
+                element: <Products></Products>
             },
             {
                 path: "/category-details/:category_name",

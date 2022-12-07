@@ -8,9 +8,8 @@ const Navbar = () => {
     const { user, logOut } = useContext(AuthContext);
     const navLink = <>
         <li className='hover:bg-yellow-500'><NavLink to="/">HOME</NavLink></li>
-        <li className='hover:bg-yellow-500'><NavLink to="/products">PRODUCTS</NavLink></li>
+        <li className='hover:bg-yellow-500'><NavLink to="/all-products">PRODUCTS</NavLink></li>
         <li className='hover:bg-yellow-500'><NavLink to="/dashboard">DASHBOARD</NavLink></li>
-        <li className='hover:bg-yellow-500'><NavLink to="/blogs">BLOGS</NavLink></li>
         <li className='hover:bg-yellow-500'><NavLink to="/about-us">ABOUT US</NavLink></li>
         {
             user?.uid ?
