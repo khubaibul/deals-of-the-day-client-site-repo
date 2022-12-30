@@ -3,10 +3,9 @@ import Rating from 'react-rating';
 import { Link } from 'react-router-dom';
 
 const SingleProduct = ({ singleProduct }) => {
-    console.log(singleProduct);
     const { _id, productName, category, condition, originalPrice, price, productImage, usedFor, productDescription, addedDate, sellerInformation } = singleProduct;
     return (
-        <Link className='bg-white hover:shadow-xl'>
+        <Link to={`/category-details/${category}`} className='bg-white hover:shadow-xl'>
             <img className='w-full h-48' src={productImage} alt="productImage" />
             <div className='p-4'>
                 <h3 className='font-bold'>{productName}</h3>

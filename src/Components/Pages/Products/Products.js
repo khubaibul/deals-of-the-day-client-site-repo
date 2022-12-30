@@ -24,12 +24,15 @@ const Products = () => {
         </div>
     }
 
+    const availableProducts = allProducts.filter(product => !product.paid)
+
+
     return (
         <div className='lg:w-[75%] mx-auto my-10'>
             <h3 className='text-2xl font-bold'>Just For You</h3>
             <div className='lg:grid grid-cols-4 gap-6'>
                 {
-                    allProducts.map(singleProduct =>
+                    availableProducts.map(singleProduct =>
                         <SingleProduct
                             key={singleProduct._id}
                             singleProduct={singleProduct}

@@ -7,6 +7,7 @@ import MyOrders from "../Components/DashBoard/MyOrders/MyOrders";
 import MyProducts from "../Components/DashBoard/MyProducts/MyProducts";
 import MyWishlist from "../Components/DashBoard/MyWishlist/MyWishlist";
 import Payment from "../Components/DashBoard/Payment/Payment";
+import About from "../Components/Pages/About/About";
 import Blogs from "../Components/Pages/Blogs/Blogs";
 import CategoryDetails from "../Components/Pages/Categories/CategoryDetails";
 import Home from "../Components/Pages/Home/Home/Home";
@@ -46,6 +47,10 @@ export const router = createBrowserRouter([
             {
                 path: "all-products",
                 element: <Products></Products>
+            },
+            {
+                path: "/about-us",
+                element: <About />
             },
             {
                 path: "/category-details/:category_name",
