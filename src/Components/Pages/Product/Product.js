@@ -7,7 +7,7 @@ const Product = ({ product, setSelectedProduct, handleWishList }) => {
 
     const { _id, productName, category, condition, originalPrice, price, productImage, usedFor, productDescription, addedDate, sellerInformation } = product;
     return (
-        <div className="min-w-screen min-h-screen bg-yellow-300 flex items-center p-5 lg:p-10 overflow-hidden relative">
+        <div className="bg-yellow-300 flex items-center p-5 lg:p-10 overflow-hidden relative">
             <div className="w-full max-w-6xl rounded bg-white shadow-xl p-10 lg:p-20 mx-auto text-gray-800 relative md:text-left">
                 <div className="md:flex items-center -mx-10">
                     <div className="w-full md:w-1/2 px-10 mb-10 md:mb-0">
@@ -51,8 +51,8 @@ const Product = ({ product, setSelectedProduct, handleWishList }) => {
                             </div>
                             <div className="inline-block align-bottom mt-4">
                                 <label
-                                    onClick={setSelectedProduct(product)}
-                                    label htmlFor="bookingModal"
+                                    onClick={() => setSelectedProduct(product)}
+                                    htmlFor="bookingModal"
                                     className="bg-neutral  text-yellow-500 rounded-full px-10 py-2 font-semibold">
                                     BOOK NOW
                                 </label>

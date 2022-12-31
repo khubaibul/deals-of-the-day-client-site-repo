@@ -21,6 +21,8 @@ const MyOrders = () => {
             .then(res => res.json())
     })
 
+    console.log(myOrders);
+
     if (isLoading) {
         return <div className='flex justify-center mt-10'>
             <Blocks

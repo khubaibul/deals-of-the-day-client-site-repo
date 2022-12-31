@@ -45,7 +45,7 @@ const CategoryDetails = () => {
 
 
     return (
-        <div className='h-screen mt-10'>
+        <div className='mt-10'>
             <h2 className="mb-5 text-3xl text-center font-bold text-yellow-500">Product Under {category_name}</h2>
             {
                 categoryProducts.length < 1 && <h2 className="mb-5 text-xl text-center font-bold text-red-500">No Product Available Now. Stay With Us. Or Try Another Category.</h2>
