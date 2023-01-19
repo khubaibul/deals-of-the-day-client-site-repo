@@ -3,6 +3,7 @@ import React, { useContext, useState } from 'react';
 import { toast } from 'react-hot-toast';
 import { Blocks } from 'react-loader-spinner';
 import { AuthContext } from '../../../Context/AuthContext/AuthProvider';
+import useDynamicTitle from '../../../Hooks/useDynamicTitle';
 import BookingModal from '../BookingModal/BookingModal';
 import Product from '../Product/Product';
 import SingleProduct from './SingleProduct';
@@ -10,6 +11,7 @@ import SingleProduct from './SingleProduct';
 const Products = () => {
     const [selectedProduct, setSelectedProduct] = useState(null);
     const { user } = useContext(AuthContext);
+    useDynamicTitle("Products")
 
     const { data: allProducts = [], isLoading, refetch } = useQuery({
         queryKey: ["all-products"],

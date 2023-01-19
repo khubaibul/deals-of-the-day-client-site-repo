@@ -6,7 +6,7 @@ import reportWebVitals from './reportWebVitals';
 import AuthProvider from './Context/AuthContext/AuthProvider';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 // Create a client
-const queryClient = new QueryClient()
+const queryClient = new QueryClient();
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

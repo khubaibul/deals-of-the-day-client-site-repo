@@ -9,10 +9,14 @@ const DashBoard = () => {
     const { user } = useContext(AuthContext);
     const [isAdmin] = useAdmin(user?.email);
     const [isSeller] = useSeller(user?.email);
-    let activeStyle = {
-        // textDecoration: "underline"
-    };
 
+    const navLinkStyle = ({ isActive }) => {
+        return {
+            borderBottom: isActive ? "4px solid #EAB308" : "",
+            backgroundColor: isActive ? "transparent" : "transparent",
+            color: isActive ? "white" : ""
+        }
+    }
     return (
         <div className='lg:w-1/4 hidden lg:block'>
             <div className="sidebar min-h-screen w-[3.35rem] overflow-hidden border-r hover:w-56 hover:bg-neutral hover:shadow-lg">
@@ -27,8 +31,6 @@ const DashBoard = () => {
                         <ul className="mt-6 space-y-2 tracking-wide">
                             <li className="min-w-max">
                                 <NavLink
-                                    style={({ isActive }) =>
-                                        isActive ? activeStyle : undefined}
                                     to="/dashboard" aria-label="dashboard" className={`relative flex items-center space-x-4 bg-gradient-to-r from-sky-600 to-cyan-400 px-4 py-3 text-white`}>
                                     <svg className="-ml-1 h-6 w-6" viewBox="0 0 24 24" fill="none">
                                         <path d="M6 8a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2v1a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V8ZM6 15a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2v1a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2v-1Z" className="fill-current text-cyan-400 dark:fill-slate-600"></path>
@@ -44,8 +46,7 @@ const DashBoard = () => {
                             <ul className="mt-6 space-y-2 tracking-wide">
                                 <li className="min-w-max">
                                     <NavLink
-                                        style={({ isActive }) =>
-                                            isActive ? activeStyle : undefined}
+                                        style={navLinkStyle}
                                         to="/dashboard/my-wishlist" aria-label="my-wishlist" className="relative flex items-center space-x-4 bg-gradient-to-r from-sky-600 to-cyan-400 px-4 py-3 text-white">
                                         <svg className="-ml-1 h-6 w-6" viewBox="0 0 24 24" fill="none">
                                             <path d="M6 8a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2v1a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V8ZM6 15a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2v1a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2v-1Z" className="fill-current text-cyan-400 dark:fill-slate-600"></path>
@@ -62,8 +63,7 @@ const DashBoard = () => {
                             <ul className="mt-6 space-y-2 tracking-wide">
                                 <li className="min-w-max">
                                     <NavLink
-                                        style={({ isActive }) =>
-                                            isActive ? activeStyle : undefined}
+                                        style={navLinkStyle}
                                         to="/dashboard/my-orders" aria-label="my-orders" className="relative flex items-center space-x-4 bg-gradient-to-r from-sky-600 to-cyan-400 px-4 py-3 text-white">
                                         <svg className="-ml-1 h-6 w-6" viewBox="0 0 24 24" fill="none">
                                             <path d="M6 8a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2v1a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V8ZM6 15a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2v1a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2v-1Z" className="fill-current text-cyan-400 dark:fill-slate-600"></path>
@@ -80,8 +80,7 @@ const DashBoard = () => {
                             <ul className="mt-6 space-y-2 tracking-wide">
                                 <li className="min-w-max">
                                     <NavLink
-                                        style={({ isActive }) =>
-                                            isActive ? activeStyle : undefined}
+                                        style={navLinkStyle}
                                         to="/dashboard/my-products" aria-label="my-products" className="relative flex items-center space-x-4 bg-gradient-to-r from-sky-600 to-cyan-400 px-4 py-3 text-white">
                                         <svg className="-ml-1 h-6 w-6" viewBox="0 0 24 24" fill="none">
                                             <path d="M6 8a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2v1a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V8ZM6 15a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2v1a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2v-1Z" className="fill-current text-cyan-400 dark:fill-slate-600"></path>
@@ -98,8 +97,7 @@ const DashBoard = () => {
                             <ul className="mt-6 space-y-2 tracking-wide">
                                 <li className="min-w-max">
                                     <NavLink
-                                        style={({ isActive }) =>
-                                            isActive ? activeStyle : undefined}
+                                        style={navLinkStyle}
                                         to="/dashboard/add-product" aria-label="add-product" className="relative flex items-center space-x-4 bg-gradient-to-r from-sky-600 to-cyan-400 px-4 py-3 text-white">
                                         <svg className="-ml-1 h-6 w-6" viewBox="0 0 24 24" fill="none">
                                             <path d="M6 8a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2v1a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V8ZM6 15a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2v1a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2v-1Z" className="fill-current text-cyan-400 dark:fill-slate-600"></path>
@@ -116,8 +114,7 @@ const DashBoard = () => {
                             <ul className="mt-6 space-y-2 tracking-wide">
                                 <li className="min-w-max">
                                     <NavLink
-                                        style={({ isActive }) =>
-                                            isActive ? activeStyle : undefined}
+                                        style={navLinkStyle}
                                         to="/dashboard/all-sellers" aria-label="all-sellers" className="relative flex items-center space-x-4 bg-gradient-to-r from-sky-600 to-cyan-400 px-4 py-3 text-white">
                                         <svg className="-ml-1 h-6 w-6" viewBox="0 0 24 24" fill="none">
                                             <path d="M6 8a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2v1a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V8ZM6 15a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2v1a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2v-1Z" className="fill-current text-cyan-400 dark:fill-slate-600"></path>
@@ -134,8 +131,7 @@ const DashBoard = () => {
                             <ul className="mt-6 space-y-2 tracking-wide">
                                 <li className="min-w-max">
                                     <NavLink
-                                        style={({ isActive }) =>
-                                            isActive ? activeStyle : undefined}
+                                        style={navLinkStyle}
                                         to="/dashboard/all-buyers" aria-label="all-buyers" className="relative flex items-center space-x-4 bg-gradient-to-r from-sky-600 to-cyan-400 px-4 py-3 text-white">
                                         <svg className="-ml-1 h-6 w-6" viewBox="0 0 24 24" fill="none">
                                             <path d="M6 8a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2v1a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V8ZM6 15a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2v1a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2v-1Z" className="fill-current text-cyan-400 dark:fill-slate-600"></path>

@@ -6,21 +6,31 @@ import { AuthContext } from '../../../Context/AuthContext/AuthProvider';
 
 const Navbar = () => {
     const { user, logOut } = useContext(AuthContext);
+
+    const navLinkStyle = ({ isActive }) => {
+        return {
+            borderBottom: isActive ? "4px solid #EAB308" : "",
+            backgroundColor: isActive ? "transparent" : "transparent",
+            color: isActive ? "white" : ""
+        }
+    }
+
+
     const navLink = <>
-        <li className='hover:bg-yellow-500'><NavLink to="/">HOME</NavLink></li>
-        <li className='hover:bg-yellow-500'><NavLink to="/all-products">PRODUCTS</NavLink></li>
-        <li className='hover:bg-yellow-500'><NavLink to="/dashboard">DASHBOARD</NavLink></li>
-        <li className='hover:bg-yellow-500'><NavLink to="/about-us">ABOUT US</NavLink></li>
+        <li className='hover:bg-yellow-500'><NavLink to="/" style={navLinkStyle}>HOME</NavLink></li>
+        <li className='hover:bg-yellow-500'><NavLink to="/all-products" style={navLinkStyle}>PRODUCTS</NavLink></li>
+        <li className='hover:bg-yellow-500'><NavLink to="/dashboard" style={navLinkStyle}>DASHBOARD</NavLink></li>
+        <li className='hover:bg-yellow-500'><NavLink to="/about-us" style={navLinkStyle}>ABOUT US</NavLink></li>
         {
             user?.uid ?
                 <>
-                    <li className='hover:bg-yellow-500'><NavLink to="/user-profile">USER</NavLink></li>
+                    <li className='hover:bg-yellow-500'><NavLink to="/user-profile" style={navLinkStyle}>USER</NavLink></li>
                     <button onClick={logOut}><li className='hover:bg-yellow-500'><Link>LOG OUT</Link></li></button>
                 </>
                 :
                 <>
-                    <li className='hover:bg-yellow-500'><NavLink to="/login">LOGIN</NavLink></li>
-                    <li className='hover:bg-yellow-500'><NavLink to="/sign-up">SIGNUP</NavLink></li>
+                    <li className='hover:bg-yellow-500'><NavLink to="/login" style={navLinkStyle}>LOGIN</NavLink></li>
+                    <li className='hover:bg-yellow-500'><NavLink to="/sign-up" style={navLinkStyle}>SIGNUP</NavLink></li>
                 </>
         }
     </>

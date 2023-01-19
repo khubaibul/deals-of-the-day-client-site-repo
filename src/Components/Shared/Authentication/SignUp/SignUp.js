@@ -120,6 +120,22 @@ const Signup = () => {
                     <h1 className='my-3 text-4xl font-bold'>Signup</h1>
                     <p className='text-sm text-gray-800'>Create a new account</p>
                 </div>
+                <div className='flex gap-x-4 mb-4 font-semibold'>
+                    <div>
+                        <div>
+                            <h4 className='text-lg'>Admin</h4>
+                            <p>Email: admin@gmail.com</p>
+                            <p>Password: 123456789</p>
+                        </div>
+                    </div>
+                    <div>
+                        <div>
+                            <h4 className='text-lg'>Seller</h4>
+                            <p>Email: xoeydipti@gmail.com</p>
+                            <p>Password: 03101999</p>
+                        </div>
+                    </div>
+                </div>
                 <form
                     noValidate=''
                     action=''
