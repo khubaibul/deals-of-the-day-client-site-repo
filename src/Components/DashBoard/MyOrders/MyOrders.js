@@ -21,7 +21,6 @@ const MyOrders = () => {
             .then(res => res.json())
     })
 
-    console.log(myOrders);
 
     if (isLoading) {
         return <div className='flex justify-center mt-10'>
@@ -40,10 +39,10 @@ const MyOrders = () => {
         <table className="border-collapse w-full lg:mr-20 my-10">
             <thead className='bg-yellow-500'>
                 <tr>
-                    <th className="p-3 font-bold uppercase text-gray-600 border border-gray-300 hidden lg:table-cell">Image</th>
-                    <th className="p-3 font-bold uppercase text-gray-600 border border-gray-300 hidden lg:table-cell">Product Name</th>
-                    <th className="p-3 font-bold uppercase text-gray-600 border border-gray-300 hidden lg:table-cell">Price</th>
-                    <th className="p-3 font-bold uppercase text-gray-600 border border-gray-300 hidden lg:table-cell">Payment</th>
+                    <th className="p-3 font-bold uppercase text-gray-600 border border-neutral hidden lg:table-cell">Image</th>
+                    <th className="p-3 font-bold uppercase text-gray-600 border border-neutral hidden lg:table-cell">Product Name</th>
+                    <th className="p-3 font-bold uppercase text-gray-600 border border-neutral hidden lg:table-cell">Price</th>
+                    <th className="p-3 font-bold uppercase text-gray-600 border border-neutral hidden lg:table-cell">Payment</th>
                 </tr>
             </thead>
             <tbody>

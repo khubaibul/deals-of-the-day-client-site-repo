@@ -1,7 +1,9 @@
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import React, { useEffect, useState } from 'react';
+import { useContext } from 'react';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../../Context/AuthContext/AuthProvider';
 import SmallSpinner from '../../Shared/Button/SmallSpinner';
 
 const CheckoutForm = ({ bookingProduct }) => {
@@ -10,9 +12,10 @@ const CheckoutForm = ({ bookingProduct }) => {
     const [success, setSuccess] = useState("");
     const [transactionId, setTransactionId] = useState("")
     const [cardError, setCardError] = useState('');
+    const { user } = useContext(AuthContext);
 
     const { buyerEmail, buyerName, price, productImage, productName, _id } = bookingProduct;
-    console.log(bookingProduct);
+    console.log(user?.email);
 
     const navigate = useNavigate();
 
@@ -88,11 +91,9 @@ const CheckoutForm = ({ bookingProduct }) => {
 
             const payment = {
                 bookingId: _id,
-                buyerEmail,
-                productName,
-                price,
+                buyerEmail: user?.email,
+                bookingProduct,
                 transactionId: paymentIntent.id,
-
             }
 
             fetch(`${process.env.REACT_APP_API_URL}/payment`, {
@@ -110,7 +111,7 @@ const CheckoutForm = ({ bookingProduct }) => {
                         setTransactionId(paymentIntent.id);
                         toast.success("Transaction Complete");
                         setLoading(false);
-                        navigate("/dashboard/my-orders")
+                        navigate("/dashboard/order-summary")
                     }
                 });
         }
@@ -119,6 +120,13 @@ const CheckoutForm = ({ bookingProduct }) => {
 
     return (
         <form onSubmit={handleSubmit}>
+            <div className='my-4 text-neutral'>
+                <p>Card Number: <br /> 2223003122003222 | 378282246310005 | 6011981111111113</p>
+                <div className='flex gap-x-4'>
+                    <p>Date: Any future date</p>
+                    <p>CVC: Any four number</p>
+                </div>
+            </div>
             <CardElement
                 options={{
                     style: {
@@ -136,7 +144,7 @@ const CheckoutForm = ({ bookingProduct }) => {
                 }}
             />
             <button
-                className='bg-neutral px-8 py-1 rounded mt-8'
+                className='bg-neutral px-8 py-1 rounded-sm mt-8 hover:bg-[#6E45E2] transition-all duration-200'
                 type="submit" disabled={!stripe || !clientSecret}>
                 {
                     loading

@@ -12,7 +12,7 @@ const stripePromise = loadStripe(process.env.REACT_APP_stripe_pk);
 const Payment = () => {
     useDynamicTitle("Payments")
     const { id } = useParams();
-    console.log(id);
+
 
     const { data: bookingProduct, isLoading, refetch } = useQuery({
         queryKey: ["all-sellers"],
@@ -33,27 +33,28 @@ const Payment = () => {
         </div>
     }
     const { buyerEmail, buyerName, price, productId, productImage, productName, _id } = bookingProduct;
+    console.log(bookingProduct);
     if (bookingProduct?.paid) {
         return <div>
             <h2 className='text-red-500 text-2xl font-bold text-center mt-10'>This Product Is Already Sold. Try Another Product.</h2>
         </div>
     }
     return (
-        <div className='flex items-center justify-center min-h-screen from-teal-100 via-teal-300 to-teal-500 bg-gradient-to-br w-full'>
-            <div className="flex flex-col items-center justify-center relative lg:w-1/3">
+        <div className='flex pt-8 justify-center from-[#88D3C3] to-[#6E45E2] bg-gradient-to-r w-full'>
+            <div className="flex flex-col items-center lg:w-1/3">
 
                 <div
                     id="partnerCard"
-                    className="bg-neutral text-gray-50 overflow-hidden w-full rounded-md p-2 min-h-[500px] flex flex-col"
+                    className="bg-neutral text-gray-50 overflow-hidden w-full rounded-sm px-1 flex flex-col pt-2"
                 >
                     <div>
-                        <h3 className="text-center py-4 text-xl">
+                        <h3 className="text-center text-xl">
                             Payment
                         </h3>
                     </div>
 
                     <div>
-                        <img className='h-72 w-full' src={productImage} alt="PaymentImage" />
+                        <img className='h-full w-64 mx-auto' src={productImage} alt="PaymentImage" />
                     </div>
                     <div className="grid grid-cols-2 px-8 py-2">
                         <h4>
@@ -61,14 +62,14 @@ const Payment = () => {
                         </h4>
                         <p>{buyerEmail}</p>
                     </div>
-                    <div className='mt-2 bg-gradient-to-r from-[#19D3AE] to-[#0FCFEC] p-4 text-gray-900'>
+                    <div className='mt-2 bg-gradient-to-r from-[#19D3AE] to-[#0FCFEC] px-4 py-1 text-gray-900'>
                         <p className='text-center text-lg'>Payment Information</p>
-                        <div className='text-center text-2xl font-bold'>
-                            <h4>Name : {productName}</h4>
-                            <h4>Total Pay : {price}</h4>
+                        <div className='text-center'>
+                            <h4 className='text-2xl'>Name : {productName}</h4>
+                            <h4 className='text-xl'>Total Pay : <span className='text-sm'>BDT</span>{price}</h4>
                         </div>
                     </div>
-                    <div className='w-full my-4 p-4 bg-gradient-to-r from-[#19D3AE] to-[#0FCFEC]'>
+                    <div className='w-full my-4 px-2 py-1 bg-gradient-to-r from-[#19D3AE] to-[#0FCFEC]'>
                         <Elements stripe={stripePromise}>
                             <CheckoutForm
                                 bookingProduct={bookingProduct}

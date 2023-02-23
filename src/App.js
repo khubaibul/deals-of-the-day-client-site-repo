@@ -5,7 +5,7 @@ import { router } from './Routes/Route';
 
 function App() {
   return (
-    <div>
+    <div style={{ fontFamily: "'Ubuntu Condensed', sans-serif" }}>
       <RouterProvider router={router}>
       </RouterProvider>
       <Toaster />

@@ -1,10 +1,11 @@
 import React from 'react';
 import Advertise from '../Advertise/Advertise';
 import Categories from '../../Categories/Categories';
-import Hero from '../Hero/Hero';
 import HomeBottomBanner from '../HomeBottomBanner/HomeBottomBanner';
 import Reviews from '../Reviews/Reviews';
 import useDynamicTitle from '../../../../Hooks/useDynamicTitle';
+import Hero from '../Hero/Hero';
+import Products from '../../Products/Products';
 
 const Home = () => {
     useDynamicTitle("Home")
@@ -13,8 +14,9 @@ const Home = () => {
     return (
         <div className='overflow-hidden'>
             <Hero></Hero>
-            <Advertise></Advertise>
+            {/* <Advertise></Advertise> */}
             <Categories></Categories>
+            <Products />
             <Reviews></Reviews>
             <HomeBottomBanner></HomeBottomBanner>
         </div>

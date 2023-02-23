@@ -3,6 +3,9 @@ import React, { useContext, useState } from 'react';
 import { toast } from 'react-hot-toast';
 import { Blocks } from 'react-loader-spinner';
 import { AuthContext } from '../../../Context/AuthContext/AuthProvider';
+import fourGrid from "../../../Assets/Images/grid-four.png";
+import threeGrid from "../../../Assets/Images/grid-three.png";
+import twoGrid from "../../../Assets/Images/grid-two.png";
 import useDynamicTitle from '../../../Hooks/useDynamicTitle';
 import BookingModal from '../BookingModal/BookingModal';
 import Product from '../Product/Product';
@@ -10,6 +13,7 @@ import SingleProduct from './SingleProduct';
 
 const Products = () => {
     const [selectedProduct, setSelectedProduct] = useState(null);
+    const [productFilter, setProductFilter] = useState("All");
     const { user } = useContext(AuthContext);
     useDynamicTitle("Products")
 
@@ -18,32 +22,6 @@ const Products = () => {
         queryFn: () => fetch(`${process.env.REACT_APP_API_URL}/all-products`)
             .then(res => res.json())
     })
-
-    const handleWishList = product => {
-
-        const wishlistProduct = {
-            productId: product._id,
-            productName: product.productName,
-            buyerEmail: user.email
-        }
-
-        fetch(`${process.env.REACT_APP_API_URL}/add-to-wishlist`, {
-            method: "POST",
-            headers: {
-                "content-type": "application/json"
-            },
-            body: JSON.stringify(wishlistProduct)
-        })
-            .then(res => res.json())
-            .then(data => {
-                if (data.acknowledged) {
-                    toast.success(`${product.productName} Added Successfully To Your Wishlist...`);
-                }
-                else {
-                    toast.error(`${data.message}`)
-                }
-            })
-    }
 
     if (isLoading) {
         return <div className='flex justify-center mt-10'>
@@ -58,30 +36,52 @@ const Products = () => {
         </div>
     }
 
-    const availableProducts = allProducts.filter(product => !product.paid)
-
+    // const availableProducts = allProducts.filter(product => !product.paid)
+    let filteredProduct = [];
+    if (productFilter === "All") {
+        filteredProduct = allProducts;
+    }
+    else {
+        filteredProduct = allProducts?.filter(product => product.category == productFilter);
+    }
 
     return (
-        <div>
-            <div className='bg-yellow-300'>
-                <h3 className='text-3xl font-bold text-center pt-5'>Just For You</h3>
-                {/* {
-                    availableProducts.map(singleProduct =>
-                        <SingleProduct
-                            key={singleProduct._id}
-                            singleProduct={singleProduct}
-                        ></SingleProduct>)
-                } */}
-                {
-                    availableProducts?.map(product =>
-                        <Product
-                            key={product._id}
-                            product={product}
-                            setSelectedProduct={setSelectedProduct}
-                            handleWishList={handleWishList}
-                        />
-                    )
-                }
+        <div className='lg:px-10 px-4 mt-5'>
+            <div className='my-8 flex justify-end'>
+                <select
+                    name="category"
+                    onChange={(e) => setProductFilter(e.target.value)}
+                    required className="p-2 border border-neutral focus:outline-neutral">
+                    <option selected value={"All"}>All</option>
+                    <option value={"Computer & Accessories"}>Computer & Accessories</option>
+                    <option value={"Smartphone & Tablet"}>Smartphone & Tablet</option>
+                    <option value={"TV & Video"}>TV & Video</option>
+                    <option value={"Camera & Drone"}>Camera & Drone</option>
+                </select>
+            </div>
+            <div className=''>
+                {/* <h3 className='text-3xl font-bold text-center pt-5'>Just For You</h3> */}
+                <div className={`grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-5`}>
+                    {
+                        filteredProduct?.map(singleProduct =>
+                            <SingleProduct
+                                key={singleProduct._id}
+                                singleProduct={singleProduct}
+                            ></SingleProduct>)
+                    }
+                </div>
+                {/* <div className='grid grid-cols-2 gap-5'>
+                    {
+                        availableProducts?.map(product =>
+                            <Product
+                                key={product._id}
+                                product={product}
+                                setSelectedProduct={setSelectedProduct}
+                                handleWishList={handleWishList}
+                            />
+                        )
+                    }
+                </div> */}
             </div>
             <div>
                 {

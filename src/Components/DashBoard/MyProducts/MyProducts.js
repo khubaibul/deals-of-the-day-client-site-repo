@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import toast from 'react-hot-toast';
 import { Blocks } from 'react-loader-spinner';
 import { Link } from 'react-router-dom';
@@ -19,7 +19,7 @@ const MyProducts = () => {
     })
 
     if (isLoading) {
-        return <div className='flex justify-center mt-10'>
+        return <div className='flex justify-center'>
             <Blocks
                 visible={true}
                 height="80"
@@ -31,6 +31,7 @@ const MyProducts = () => {
         </div>
     }
 
+    console.log(myProducts);
 
     const handleProductDelete = myProduct => {
         fetch(`${process.env.REACT_APP_API_URL}/delete-product/${myProduct?._id}`, {
@@ -68,34 +69,43 @@ const MyProducts = () => {
 
 
     return (
-        <table className="border-collapse w-full lg:mr-20 my-10">
-            <thead className='bg-yellow-500'>
-                <tr>
-                    <th className="p-3 font-bold uppercase text-gray-600 border border-gray-300 hidden lg:table-cell">Image</th>
-                    <th className="p-3 font-bold uppercase text-gray-600 border border-gray-300 hidden lg:table-cell">Product Name</th>
-                    <th className="p-3 font-bold uppercase text-gray-600 border border-gray-300 hidden lg:table-cell">Price</th>
-                    <th className="p-3 font-bold uppercase text-gray-600 border border-gray-300 hidden lg:table-cell">Status</th>
-                    <th className="p-3 font-bold uppercase text-gray-600 border border-gray-300 hidden lg:table-cell">Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                {
-                    myProducts.length < 1 && <h3 className='text-center text-lg h-screen w-full flex justify-center items-center'>
+        <section>
+            {
+                myProducts?.length > 0 &&
+                <table className="border-collapse w-full lg:mr-20 my-10">
+                    <thead className='bg-yellow-500'>
+                        <tr>
+                            <th className="p-3 font-bold uppercase text-gray-700 border border-neutral hidden lg:table-cell">Image</th>
+                            <th className="p-3 font-bold uppercase text-gray-700 border border-neutral hidden lg:table-cell">Product Name</th>
+                            <th className="p-3 font-bold uppercase text-gray-700 border border-neutral hidden lg:table-cell">Price</th>
+                            <th className="p-3 font-bold uppercase text-gray-700 border border-neutral hidden lg:table-cell">Sold Status</th>
+                            <th className="p-3 font-bold uppercase text-gray-700 border border-neutral hidden lg:table-cell">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {
+                            myProducts?.map(myProduct =>
+                                <MyProduct
+                                    key={myProduct._id}
+                                    myProduct={myProduct}
+                                    handleProductDelete={handleProductDelete}
+                                    handleProductAdvertise={handleProductAdvertise}
+                                ></MyProduct>
+                            )
+                        }
+                    </tbody>
+                </table>
+            }
+            {
+                myProducts.length < 1 &&
+                <div className='flex justify-center items-center mt-56 ml-56'>
+                    <h3 className='text-center text-lg w-full'>
                         You Haven't Any Products Added Yet. Please
-                        <Link to="/add-product" className='underline underline-offset-2 ml-1'>  Add Product...</Link></h3>
-                }
-                {
-                    myProducts?.map(myProduct =>
-                        <MyProduct
-                            key={myProduct._id}
-                            myProduct={myProduct}
-                            handleProductDelete={handleProductDelete}
-                            handleProductAdvertise={handleProductAdvertise}
-                        ></MyProduct>
-                    )
-                }
-            </tbody>
-        </table>
+                        <Link to="/dashboard/add-product" className='underline underline-offset-2 ml-1 text-info'>  Add Product...</Link>
+                    </h3>
+                </div>
+            }
+        </section>
     );
 };
 

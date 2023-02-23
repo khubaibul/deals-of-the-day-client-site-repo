@@ -3,15 +3,14 @@ import Rating from 'react-rating';
 import { Link } from 'react-router-dom';
 
 const SingleProduct = ({ singleProduct }) => {
-    const { _id, productName, category, condition, originalPrice, price, productImage, usedFor, productDescription, addedDate, sellerInformation } = singleProduct;
+    const { _id, productName, price, productImage, sellerInformation } = singleProduct;
     return (
-        <Link to={`/category-details/${category}`} className='bg-white hover:shadow-xl'>
-            <img className='w-full h-48' src={productImage} alt="productImage" />
-            <div className='p-4'>
+        <Link to={`/product-details/${_id}`} className='bg-white hover:shadow-xl overflow-hidden transition-all duration-300'>
+            <img className='w-96 h-80 hover:scale-105 transition-all duration-300' src={productImage} alt="productImage" />
+            <div className='p-4 flex flex-col gap-y-1.5'>
                 <h3 className='font-bold'>{productName}</h3>
-                <p>$ {price}</p>
-                <p><span className="leading-none align-baseline line-through text-red-600">$ {originalPrice}</span></p>
-                <span className="-translate-x-4 text-2xl transition duration-300 group-hover:opacity-100 group-hover:translate-x-0">
+                <p className=''>BDT {price}</p>
+                <div>
                     <Rating
                         placeholderRating={5}
                         readonly={true}
@@ -19,7 +18,8 @@ const SingleProduct = ({ singleProduct }) => {
                         fullSymbol={<img src="https://raw.githubusercontent.com/dreyescat/react-rating/master/assets/images/star-red.png" className="icon" alt="/" />}
                         placeholderSymbol={<img src="https://raw.githubusercontent.com/dreyescat/react-rating/master/assets/images/star-yellow.png" className="icon" alt="/" />}
                     />
-                </span>
+                    <span className='text-base ml-1.5'>(9)</span>
+                </div>
             </div>
         </Link>
     );

@@ -91,15 +91,15 @@ const Login = () => {
 
 
     return (
-        <div className='flex justify-center items-center pt-8'>
-            <div className='flex flex-col max-w-md p-6 rounded-md sm:p-10 bg-yellow-500 text-neutral mb-10'>
-                <div className='mb-8 text-center'>
+        <section className='flex justify-center items-center pt-8'>
+            <div className='flex flex-col p-6 rounded-sm sm:p-10 bg-yellow-500 text-neutral mb-10 w-[550px]'>
+                <div className='mb-2 text-center'>
                     <h1 className='my-3 text-4xl font-bold'>Login</h1>
                     <p className='text-sm'>
                         Login to access your account
                     </p>
                 </div>
-                <div className='flex gap-x-4 mb-4 font-semibold'>
+                <div className='flex justify-center gap-x-4 mb-4 font-semibold'>
                     <div>
                         <div>
                             <h4 className='text-lg'>Admin</h4>
@@ -110,16 +110,14 @@ const Login = () => {
                     <div>
                         <div>
                             <h4 className='text-lg'>Seller</h4>
-                            <p>Email: xoeydipti@gmail.com</p>
+                            <p>Email: tamjid@gmail.com</p>
                             <p>Password: 03101999</p>
                         </div>
                     </div>
                 </div>
                 <form
                     onSubmit={handleSubmit}
-                    noValidate=''
-                    action=''
-                    className='space-y-6 ng-untouched ng-pristine ng-valid'
+                    className='space-y-6'
                 >
                     <div className='space-y-4'>
                         <div>
@@ -133,7 +131,7 @@ const Login = () => {
                                 id='email'
                                 required
                                 placeholder='Enter Your Email Here'
-                                className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-purple-500 bg-gray-200 text-gray-900'
+                                className='w-full px-3 py-2 border rounded-sm border-gray-300 focus:outline-neutral bg-gray-200 text-gray-900'
                                 data-temp-mail-org='0'
                             />
                         </div>
@@ -149,7 +147,7 @@ const Login = () => {
                                 id='password'
                                 required
                                 placeholder='*******'
-                                className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-purple-500 bg-gray-200 text-gray-900'
+                                className='w-full px-3 py-2 border rounded-sm border-gray-300 focus:outline-neutral bg-gray-200 text-gray-900'
                             />
                         </div>
                     </div>
@@ -157,7 +155,7 @@ const Login = () => {
                     <div>
                         <SharedButton
                             type='submit'
-                            classes='w-full px-8 py-3 font-semibold rounded-md bg-gray-900 hover:bg-gray-700 hover:text-white text-gray-100'
+                            classes='w-full px-8 py-3 font-semibold rounded-sm bg-gray-900 hover:bg-gray-700 hover:text-white text-gray-100'
                         >
                             {
                                 loading ? <SmallSpinner></SmallSpinner>
@@ -205,7 +203,7 @@ const Login = () => {
                     </Link>
                 </p>
             </div>
-        </div>
+        </section>
     )
 }
 

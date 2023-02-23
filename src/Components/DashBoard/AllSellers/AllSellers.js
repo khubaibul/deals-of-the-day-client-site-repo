@@ -15,7 +15,7 @@ const AllSellers = () => {
         queryFn: () => fetch(`${process.env.REACT_APP_API_URL}/all-sellers`)
             .then(res => res.json())
     })
-
+    console.log(allSellers);
     if (isLoading) {
         return <div className='flex justify-center mt-10'>
             <Blocks
@@ -31,7 +31,7 @@ const AllSellers = () => {
 
     const handleSellerVerification = (email) => {
         fetch(`${process.env.REACT_APP_API_URL}/seller-verification`, {
-            method: "PUT",
+            method: "PATCH",
             headers: {
                 "content-type": "application/json"
             },
@@ -39,6 +39,7 @@ const AllSellers = () => {
         })
             .then(res => res.json())
             .then(data => {
+                console.log(data);
                 if (data.modifiedCount) {
                     toast.success("This Seller Is Now A Verified Seller")
                 }
@@ -66,15 +67,15 @@ const AllSellers = () => {
 
 
     return (
-        <table className="border-collapse w-full lg:mr-20 my-10">
+        <table className="border-collapse lg:mr-20 my-10 w-full">
             {
                 loading && <SmallSpinner></SmallSpinner>
             }
             <thead className='bg-yellow-500'>
                 <tr>
-                    <th className="p-3 font-bold uppercase text-gray-600 border border-gray-300 hidden lg:table-cell">Seller Name</th>
-                    <th className="p-3 font-bold uppercase text-gray-600 border border-gray-300 hidden lg:table-cell">Seller Email</th>
-                    <th className="p-3 font-bold uppercase text-gray-600 border border-gray-300 hidden lg:table-cell">Action</th>
+                    <th className="p-3 font-bold text-gray-700 border border-neutral hidden lg:table-cell">Seller Name</th>
+                    <th className="p-3 font-bold text-gray-700 border border-neutral hidden lg:table-cell">Seller Email</th>
+                    <th className="p-3 font-bold text-gray-700 border border-neutral hidden lg:table-cell">Action</th>
                 </tr>
             </thead>
             <tbody>

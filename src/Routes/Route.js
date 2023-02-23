@@ -6,11 +6,13 @@ import DefaultDashBoard from "../Components/DashBoard/DefaultDashBoard/DefaultDa
 import MyOrders from "../Components/DashBoard/MyOrders/MyOrders";
 import MyProducts from "../Components/DashBoard/MyProducts/MyProducts";
 import MyWishlist from "../Components/DashBoard/MyWishlist/MyWishlist";
+import OrderSummary from "../Components/DashBoard/OrderSummary/OrderSummary";
 import Payment from "../Components/DashBoard/Payment/Payment";
 import About from "../Components/Pages/About/About";
-import Blogs from "../Components/Pages/Blogs/Blogs";
 import CategoryDetails from "../Components/Pages/Categories/CategoryDetails";
 import Home from "../Components/Pages/Home/Home/Home";
+import Product from "../Components/Pages/Product/Product";
+import ProductDetails from "../Components/Pages/ProductDetails/ProductDetails";
 import Products from "../Components/Pages/Products/Products";
 import UserProfile from "../Components/Pages/User/UserProfile";
 import Login from "../Components/Shared/Authentication/Login/Login";
@@ -45,8 +47,13 @@ export const router = createBrowserRouter([
                 element: <UserProfile></UserProfile>
             },
             {
-                path: "all-products",
+                path: "/all-products",
                 element: <Products></Products>
+            },
+            {
+                path: "/product-details/:_id",
+                element: <PrivateRoute><ProductDetails /></PrivateRoute>,
+                loader: ({ params }) => fetch(`https://deals-of-the-day-server.vercel.app/product/${params._id}`)
             },
             {
                 path: "/about-us",
@@ -80,6 +87,10 @@ export const router = createBrowserRouter([
                     {
                         path: "/dashboard/my-orders",
                         element: <MyOrders></MyOrders>
+                    },
+                    {
+                        path: "/dashboard/order-summary",
+                        element: <OrderSummary />
                     },
                     {
                         path: "/dashboard/payment/:id",

@@ -11,31 +11,34 @@ const Navbar = () => {
         return {
             borderBottom: isActive ? "4px solid #EAB308" : "",
             backgroundColor: isActive ? "transparent" : "transparent",
-            color: isActive ? "white" : ""
+            color: isActive ? "#EAB308" : ""
         }
     }
 
-
     const navLink = <>
-        <li className='hover:bg-yellow-500'><NavLink to="/" style={navLinkStyle}>HOME</NavLink></li>
-        <li className='hover:bg-yellow-500'><NavLink to="/all-products" style={navLinkStyle}>PRODUCTS</NavLink></li>
-        <li className='hover:bg-yellow-500'><NavLink to="/dashboard" style={navLinkStyle}>DASHBOARD</NavLink></li>
-        <li className='hover:bg-yellow-500'><NavLink to="/about-us" style={navLinkStyle}>ABOUT US</NavLink></li>
+        <li className=''><NavLink to="/" style={navLinkStyle}>HOME</NavLink></li>
+        <li className=''><NavLink to="/all-products" style={navLinkStyle}>PRODUCTS</NavLink></li>
+        <li className=''><NavLink to="/about-us" style={navLinkStyle}>ABOUT US</NavLink></li>
+        <li className=''><NavLink to="/dashboard" style={navLinkStyle}>DASHBOARD</NavLink></li>
         {
             user?.uid ?
                 <>
-                    <li className='hover:bg-yellow-500'><NavLink to="/user-profile" style={navLinkStyle}>USER</NavLink></li>
-                    <button onClick={logOut}><li className='hover:bg-yellow-500'><Link>LOG OUT</Link></li></button>
+                    <li className=''>
+                        <NavLink to="/user-profile" style={navLinkStyle}>
+                            <img src={user?.photoURL} className="w-10 h-10 rounded-full p-0.5 bg-warning" alt="" />
+                        </NavLink>
+                    </li>
+                    <li className='flex items-center'><button onClick={logOut} className="btn btn-outline btn-warning rounded !text-white px-5 border-warning">LOG OUT</button></li>
                 </>
                 :
                 <>
-                    <li className='hover:bg-yellow-500'><NavLink to="/login" style={navLinkStyle}>LOGIN</NavLink></li>
-                    <li className='hover:bg-yellow-500'><NavLink to="/sign-up" style={navLinkStyle}>SIGNUP</NavLink></li>
+                    <li className=''><NavLink to="/login" style={navLinkStyle}>LOGIN</NavLink></li>
+                    <li className=''><NavLink to="/sign-up" style={navLinkStyle}>SIGNUP</NavLink></li>
                 </>
         }
     </>
     return (
-        <div className="navbar bg-[#183661] lg:px-36 text-white py-6 sticky top-0 z-50 shadow">
+        <div className="navbar bg-[#183661] lg:px-36 text-white sticky top-0 z-50 shadow">
             <div className="navbar-start p-0">
                 <div className="dropdown">
                     <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -49,19 +52,14 @@ const Navbar = () => {
                         </div>
                     </ul>
                 </div>
-                <Link to="/">
-                    <img src={logo} className="w-32" alt="" />
+                <Link to="/" className=''>
+                    <img src={logo} className="w-16" alt="" />
                 </Link>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal p-0">
                     {navLink}
                 </ul>
-            </div>
-            <div className="navbar-end hidden lg:block">
-                <div className="form-control">
-                    <input type="text" placeholder="Search" className="input input-bordered rounded-none text-black" />
-                </div>
             </div>
             <div className="navbar-end lg:hidden">
                 <div className="form-control">

@@ -9,6 +9,7 @@ const AllBuyers = () => {
 
     useDynamicTitle("AllBuyers-Dashboard")
     const [loading, setLoading] = useState(false);
+
     const { data: allBuyers = [], isLoading, refetch } = useQuery({
         queryKey: ["all-buyers"],
         queryFn: () => fetch(`${process.env.REACT_APP_API_URL}/all-buyers`, {
@@ -51,9 +52,9 @@ const AllBuyers = () => {
         <table className="border-collapse w-full lg:mr-20 my-10">
             <thead className='bg-yellow-500'>
                 <tr>
-                    <th className="p-3 font-bold uppercase text-gray-600 border border-gray-300 hidden lg:table-cell">Buyer Name</th>
-                    <th className="p-3 font-bold uppercase text-gray-600 border border-gray-300 hidden lg:table-cell">Buyer Email</th>
-                    <th className="p-3 font-bold uppercase text-gray-600 border border-gray-300 hidden lg:table-cell">Action</th>
+                    <th className="p-3 font-bold uppercase text-gray-600 border border-neutral hidden lg:table-cell">Buyer Name</th>
+                    <th className="p-3 font-bold uppercase text-gray-600 border border-neutral hidden lg:table-cell">Buyer Email</th>
+                    <th className="p-3 font-bold uppercase text-gray-600 border border-neutral hidden lg:table-cell">Action</th>
                 </tr>
             </thead>
             <tbody>

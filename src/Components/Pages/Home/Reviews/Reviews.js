@@ -30,15 +30,23 @@ const Reviews = () => {
             location: "Gradpaa's House",
             ratings: 4
         },
+        {
+            _id: 4,
+            name: 'MKB HD',
+            img: people3,
+            review: 'Compellingly strategize future-proof outsourcing whereas end-to-end convergence. Efficiently recaptiualize leading-edge relationships and progressive scenarios. Continually reintermediate high-quality results through user friendly processes.',
+            location: "MKB Studio",
+            ratings: 5
+        },
     ]
 
     return (
-        <div className='lg:px-10 my-40'>
+        <div className='lg:px-10 px-5 my-40'>
             <div>
                 <div>
                     <h2 className='text-center text-3xl font-bold text-neutral mb-10'>Our Customers Review</h2>
                 </div>
-                <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5'>
+                <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5'>
                     {
                         reviews.map((patientReview, idx) => <Review key={idx} patientReview={patientReview}></Review>)
                     }

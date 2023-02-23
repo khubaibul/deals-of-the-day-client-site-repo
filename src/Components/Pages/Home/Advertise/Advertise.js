@@ -20,7 +20,7 @@ const Advertise = () => {
 
 
     if (loading) {
-        return <div className='flex justify-center mt-10'>
+        return <div className='flex justify-center'>
             <Blocks
                 visible={true}
                 height="80"
@@ -48,7 +48,7 @@ const Advertise = () => {
     };
 
     if (advertisementProducts.length) {
-        return <div className='my-48'>
+        return <div className='lg:mt-10'>
             <h1 className="mb-5 text-3xl font-bold text-neutral text-center">Best Deals For You</h1>
             <Slider {...settings}>
                 {advertisementProducts?.map((product) => <SingleAdvertise

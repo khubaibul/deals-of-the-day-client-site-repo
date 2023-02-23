@@ -19,7 +19,7 @@ const DashBoard = () => {
     }
     return (
         <div className='lg:w-1/4 hidden lg:block'>
-            <div className="sidebar min-h-screen w-[3.35rem] overflow-hidden border-r hover:w-56 hover:bg-neutral hover:shadow-lg">
+            <div className="sidebar min-h-screen w-[3.35rem] overflow-hidden border-r hover:w-56 hover:bg-neutral hover:shadow-lg transition-all duration-500">
                 <div className="lg:flex lg:h-screen lg:flex-col lg:justify-between lg:py-6">
                     <div>
                         <Link to="/">
@@ -71,6 +71,23 @@ const DashBoard = () => {
                                             <path d="M13 15a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2v1a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-1Z" className="fill-current group-hover:text-sky-300"></path>
                                         </svg>
                                         <span className="-mr-1 font-medium">My Orders</span>
+                                    </NavLink>
+                                </li>
+                            </ul>
+                        }
+                        {
+                            (!isAdmin && !isSeller) &&
+                            <ul className="mt-6 space-y-2 tracking-wide">
+                                <li className="min-w-max">
+                                    <NavLink
+                                        style={navLinkStyle}
+                                        to="/dashboard/order-summary" aria-label="order-summary" className="relative flex items-center space-x-4 bg-gradient-to-r from-sky-600 to-cyan-400 px-4 py-3 text-white">
+                                        <svg className="-ml-1 h-6 w-6" viewBox="0 0 24 24" fill="none">
+                                            <path d="M6 8a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2v1a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V8ZM6 15a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2v1a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2v-1Z" className="fill-current text-cyan-400 dark:fill-slate-600"></path>
+                                            <path d="M13 8a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2v1a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2V8Z" className="fill-current text-cyan-200 group-hover:text-cyan-300"></path>
+                                            <path d="M13 15a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2v1a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-1Z" className="fill-current group-hover:text-sky-300"></path>
+                                        </svg>
+                                        <span className="-mr-1 font-medium">Order Summary</span>
                                     </NavLink>
                                 </li>
                             </ul>
