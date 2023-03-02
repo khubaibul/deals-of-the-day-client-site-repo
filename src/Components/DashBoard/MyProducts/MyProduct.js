@@ -35,15 +35,24 @@ const MyProduct = ({ myProduct, handleProductDelete, handleProductAdvertise, adv
             <td className="w-full lg:w-auto p-3 text-gray-800 text-center border border-b border-neutral text-center block lg:table-cell relative lg:static">
                 <span className="lg:hidden absolute top-8 left-2 bg-neutral text-slate-200 px-2 py-1 text-xs font-bold uppercase">Action</span>
                 <div className='flex flex-col gap-y-2 items-center'>
-                    <button
-                        // onClick={() => handleProductDelete(myProduct)}
-                        className='bg-red-600 hover:bg-red-700 font-bold transition-all duration-200 px-3 py-0.5 text-sm text-slate-300 rounded-sm w-[100px]'>
-                        Delete
-                    </button>
+                    {/* <button
+                        onClick={() => handleProductAdvertise(_id)}
+                        className='bg-neutral hover:bg-info active:bg-opacity-60 font-bold transition-all duration-200 px-3 py-0.5 text-sm text-slate-300 rounded-sm w-[100px]'>
+                        {
+                            myProduct?.featured ? <span>Advertised</span>
+                                : <span>Advertise</span>
+                        }
+                    </button> */}
 
-                    <button
-                        // onClick={() => handleProductAdvertise(myProduct)}
-                        className='bg-neutral hover:bg-info font-bold transition-all duration-200 px-3 py-0.5 text-sm text-slate-300 rounded-sm w-[100px]'>Advertise</button>
+                    {
+                        myProduct?.featured ?
+                            <span className='bg-green-600 px-3 rounded-sm'>Advertised</span>
+                            : <button
+                                onClick={() => handleProductAdvertise(_id)}
+                                className='bg-neutral hover:bg-info active:bg-opacity-60 font-bold transition-all duration-200 px-3 py-0.5 text-sm text-slate-300 rounded-sm w-[100px]'>
+                                Advertise
+                            </button>
+                    }
                 </div>
             </td>
         </tr>

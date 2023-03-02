@@ -18,6 +18,7 @@ const MyProducts = () => {
             .then(res => res.json())
     })
 
+
     if (isLoading) {
         return <div className='flex justify-center'>
             <Blocks
@@ -31,7 +32,6 @@ const MyProducts = () => {
         </div>
     }
 
-    console.log(myProducts);
 
     const handleProductDelete = myProduct => {
         fetch(`${process.env.REACT_APP_API_URL}/delete-product/${myProduct?._id}`, {
@@ -47,19 +47,22 @@ const MyProducts = () => {
             })
     }
 
-    const handleProductAdvertise = myProduct => {
-        fetch(`${process.env.REACT_APP_API_URL}/advertise-product`, {
-            method: "POST",
+    const handleProductAdvertise = _id => {
+        console.log(_id);
+        fetch(`${process.env.REACT_APP_API_URL}/feature-product`, {
+            method: "PATCH",
             headers: {
                 "content-type": "application/json",
                 authorization: `bearer ${localStorage.getItem("deals-of-the-day")}`
             },
-            body: JSON.stringify(myProduct)
+            body: JSON.stringify({ _id })
         })
             .then(res => res.json())
             .then(data => {
+                console.log(data);
                 if (data.acknowledged) {
-                    toast.success(`${myProduct.productName} Added For Advertisement...`);
+                    toast.success(`Added For Advertisement...`);
+                    refetch();
                 }
                 else {
                     toast.error(data.message);

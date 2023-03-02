@@ -4,8 +4,12 @@ import { Link } from 'react-router-dom';
 
 const SingleProduct = ({ singleProduct }) => {
     const { _id, productName, price, productImage, sellerInformation } = singleProduct;
+    console.log(singleProduct);
     return (
-        <Link to={`/product-details/${_id}`} className='bg-white hover:shadow-xl overflow-hidden transition-all duration-300'>
+        <Link to={`/product-details/${_id}`} className='bg-white hover:shadow-xl overflow-hidden transition-all duration-300 relative'>
+            {
+                singleProduct?.featured && <span className='absolute left-0 top-0 bg-neutral px-2 text-white rounded-sm z-50'>Featured</span>
+            }
             <img className='w-96 h-80 hover:scale-105 transition-all duration-300' src={productImage} alt="productImage" />
             <div className='p-4 flex flex-col gap-y-1.5'>
                 <h3 className='font-bold'>{productName}</h3>

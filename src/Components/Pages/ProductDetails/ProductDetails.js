@@ -9,19 +9,18 @@ import { useState } from 'react';
 import SmallSpinner from '../../Shared/Button/SmallSpinner';
 
 const ProductDetails = () => {
-    const [selectedProduct, setSelectedProduct] = useState(null);
     const [loading1, setLoading1] = useState(false);
     const [loading2, setLoading2] = useState(false);
     const { user } = useContext(AuthContext);
     const product = useLoaderData();
 
     const { _id, category, price, productDescription, productImage, productName, productBrand, sellerInformation, warranty, deliveryTime, availability } = product;
+    console.log(product);
     const { sellerName, sellerEmail } = sellerInformation;
 
 
 
     const stock = parseInt(availability) - product?.sell;
-    console.log(stock);
     // Handle Add To Cart
     const handleAddToCart = product => {
         setLoading1(true);
@@ -121,6 +120,9 @@ const ProductDetails = () => {
                                 parseInt(availability) > 0 ? " In stock" : "Out of stock"
                             }
                         </span>
+                        {
+                            product?.featured && <span className='bg-neutral text-white px-2 py-0.5 rounded-lg'>Featured</span>
+                        }
                     </div>
                     <p className='text-sm font-sans mt-1.5 text-justify'>{productDescription}</p>
                 </div>
