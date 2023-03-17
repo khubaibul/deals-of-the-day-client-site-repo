@@ -36,18 +36,38 @@ const Products = () => {
         </div>
     }
 
-    // const availableProducts = allProducts.filter(product => !product.paid)
     let filteredProduct = [];
     if (productFilter === "All") {
         filteredProduct = allProducts;
     }
     else {
-        filteredProduct = allProducts?.filter(product => product.category == productFilter);
+        filteredProduct = allProducts?.filter(product => product.category === productFilter);
+    }
+
+    const handleSearch = e => {
+        e.preventDefault();
+        filteredProduct = allProducts?.filter(product => product.productName.includes(e.target.searchKeyword.value));
+        e.target.reset();
     }
 
     return (
         <div className='lg:px-10 px-4 mt-5'>
-            <div className='my-8 flex justify-end'>
+            <div className='my-8 flex justify-between'>
+                <form onSubmit={handleSearch}>
+                    <input
+                        type="text"
+                        name="searchKeyword"
+                        id=""
+                        placeholder='Search product'
+                        className='py-2 pl-4 pr-10 focus:border-primary focus:outline-neutral'
+                    />
+                    <button
+                        type='submit'
+                        className='py-2 px-4 bg-neutral text-white'
+                    >
+                        Search
+                    </button>
+                </form>
                 <select
                     name="category"
                     onChange={(e) => setProductFilter(e.target.value)}

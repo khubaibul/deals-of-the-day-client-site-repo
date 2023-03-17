@@ -11,7 +11,8 @@ const Navbar = () => {
         return {
             borderBottom: isActive ? "4px solid #EAB308" : "",
             backgroundColor: isActive ? "transparent" : "transparent",
-            color: isActive ? "#EAB308" : ""
+            color: isActive ? "#EAB308" : "",
+            borderRadius: "0px"
         }
     }
 
@@ -28,7 +29,7 @@ const Navbar = () => {
                             <img src={user?.photoURL} className="w-10 h-10 rounded-full p-0.5 bg-warning" alt="" />
                         </NavLink>
                     </li>
-                    <li className='flex items-center'><button onClick={logOut} className="btn btn-outline btn-warning rounded !text-white px-5 border-warning">LOG OUT</button></li>
+                    <li className='flex lg:items-center'><button onClick={logOut} className="btn btn-outline btn-warning rounded !text-white px-5 border-warning">LOG OUT</button></li>
                 </>
                 :
                 <>
@@ -44,7 +45,7 @@ const Navbar = () => {
                     <label tabIndex={0} className="btn btn-ghost lg:hidden">
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
                     </label>
-                    <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-[#183661] w-52">
+                    <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-[#183661] w-52 rounded-none">
                         {navLink}
                         <div className='flex items-center gap-x-2'>
                             <button className='btn btn-sm bg-blue-900 hover:bg-yellow-500'>Order Now</button>

@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 
 const SingleProduct = ({ singleProduct }) => {
     const { _id, productName, price, productImage, sellerInformation } = singleProduct;
-    console.log(singleProduct);
     return (
         <Link to={`/product-details/${_id}`} className='bg-white hover:shadow-xl overflow-hidden transition-all duration-300 relative'>
             {
