@@ -1,19 +1,16 @@
 # Deals Of The Day
 
-## Live Site Link : https://deals-of-the-day-61353.web.app/
+## Live Site Link : https://deals-of-the-day-61353.web.app
+## Front End GitHub Link : https://github.com/KIShakib/deals-of-the-day-client-site-repo
+## Back End GitHub Link :https://github.com/KIShakib/deals-of-the-day-server-site-repo
 
 ### Features
 
-- A website for used cycle sales and buys.
-- Users can see products for his/her and can book them.
-- In Dashboard, the user can see My Orders. Where he/she can pay for the product and buy it.
-- Also, users can add to the wishlist for the next.
-- This website have also seller system. A user can be a seller while he signup.
-- A seller can give a sell post with all information of his/her product.
-- A seller can also advertise product, which will show in advertise section. Also seller can delete his/her product.
-- There is also admin system. An admin can control whole website. Admin can remove any user or seller. Also admin can verify the seller.
-- All user+seller+admin are stored in database.
-- Products are also stored in database.
+- A multi-vendor pc & gadget-selling website where sellers can add products for sale.
+- 3 types of users can use this website. Buyer, seller and admin. Different dashboards for everyone.
+- Buyers can add to cart and add to wishlist a product. From the wishlist or cart, a user can purchase
+products by using the Stripe payment method. The seller can add products, and advertise products.
+Finally, the admin can control the whole website.
 
 ### Technologies
 
